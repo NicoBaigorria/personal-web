@@ -2,3 +2,9 @@ canvas{
   width: 100vw;
   height: 100vh;
 }
+
+canvas { cursor: none !important; }
+
+body{
+  margin: 0;
+}
