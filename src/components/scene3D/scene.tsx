@@ -26,7 +26,7 @@ const RaycasterPointer = () => {
     if (planeRef.current) {
       // Adjust the plane's size to cover the entire screen
       const aspect = size.width / size.height;
-      const height = 2 * Math.tan((camera.fov * Math.PI) / 360) * camera.position.z;
+      const height = size.height;
       const width = height * aspect;
 
       planeRef.current.scale.set(width, height, 1);
@@ -109,7 +109,19 @@ const RaycasterPointer = () => {
 };
 
 const ThreeScene = () => (
-  <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+  <Canvas
+  style={{
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    zIndex: 1, // Ensure the canvas is above other content
+  }}
+  camera={{
+    position: [0, 0, 5], // Camera position
+    fov: 75, // Field of view for perspective camera
+  }}>
     {/* Add an ambient light for slight overall illumination */}
     <ambientLight intensity={0.1} />
     <RaycasterPointer />
