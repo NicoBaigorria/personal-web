@@ -1,34 +1,66 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Canvas, useThree, useLoader } from "@react-three/fiber";
+import React, { useRef, useState } from "react";
+import { Canvas, useThree, useLoader, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { Html } from "@react-three/drei";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 
 const FBXModel = ({ path }: { path: string }) => {
   const model = useLoader(FBXLoader, path);
+  const groupRef = useRef<THREE.Group>(null); // Reference to the FBX model
+  const [isHovered, setIsHovered] = useState(false); // Hover state
+  const [hoverPosition, setHoverPosition] = useState<[number, number, number]>([0, 0, 0]);
 
-  return <primitive object={model} scale={0.01} />;
+  const raycaster = useRef(new THREE.Raycaster());
+  const mouse = useThree((state) => state.mouse);
+
+  useFrame(({ camera }) => {
+    if (groupRef.current) {
+      // Update raycaster based on the mouse position
+      raycaster.current.setFromCamera(mouse, camera);
+
+      // Check intersections with the FBX model
+      const intersects = raycaster.current.intersectObject(groupRef.current, true);
+
+      if (intersects.length > 0) {
+        setIsHovered(true);
+        setHoverPosition([
+          intersects[0].point.x,
+          intersects[0].point.y,
+          intersects[0].point.z,
+        ]);
+      } else {
+        setIsHovered(false);
+      }
+    }
+  });
+
+  return (
+    <group ref={groupRef}>
+      <primitive object={model} scale={0.01} />
+      {isHovered && (
+        <Html position={[0,0,0]} style={{ color: "white", fontSize: "16px", background: "black", padding: "5px", borderRadius: "5px" }}>
+          Hovering over the model!
+        </Html>
+      )}
+    </group>
+  );
 };
-
 
 const RaycasterPointer = () => {
   const [position, setPosition] = useState(new THREE.Vector3(0, 0, 0));
-
   const planeRef = useRef<THREE.Mesh>(null);
   const lightRef = useRef<THREE.PointLight>(null);
 
-  const { camera, mouse, scene, size } = useThree();
+  const { camera, mouse, size } = useThree();
 
   const handlePointerMove = () => {
     const raycaster = new THREE.Raycaster();
     raycaster.setFromCamera(mouse, camera);
 
     if (planeRef.current) {
-      // Adjust the plane's size to cover the entire screen
       const aspect = size.width / size.height;
       const height = size.height;
       const width = height * aspect;
-
       planeRef.current.scale.set(width, height, 1);
     }
 
@@ -36,45 +68,21 @@ const RaycasterPointer = () => {
       const intersects = raycaster.intersectObject(planeRef.current);
       if (intersects.length > 0) {
         const intersect = intersects[0].point;
-        setPosition(new THREE.Vector3(intersect.x, intersect.y, intersect.z+1));
+        setPosition(new THREE.Vector3(intersect.x, intersect.y, intersect.z + 1));
 
         if (lightRef.current) {
-          lightRef.current.position.set(intersect.x, intersect.y, intersect.z+1);
+          lightRef.current.position.set(intersect.x, intersect.y, intersect.z + 1);
         }
       }
     }
   };
 
-  React.useEffect(() => {
-    /*
-    if (lightRef.current) {
-      const helper = new THREE.PointLightHelper(lightRef.current, 0.2, "orange");
-      scene.add(helper);
-
-      return () => {
-        scene.remove(helper);
-      };
-    }
-
-    return undefined;
-    */
-  }, [scene]);
-
   return (
     <>
-    {/* 
-      <Html position={[0, 0, 0]} style={{ color: "white", fontSize: "18px" }}>
-        Position: {position.toArray().map((p) => p.toFixed(2)).join(", ")}
-      </Html>
-    */}
-
-      {/* Plane mesh */}
       <mesh ref={planeRef} onPointerMove={handlePointerMove} position={[0, 0, 0]}>
         <planeGeometry args={[10, 10]} />
         <meshStandardMaterial color="black" side={THREE.DoubleSide} />
       </mesh>
-
-      {/* Point Light */}
       <pointLight
         ref={lightRef}
         intensity={10}
@@ -82,49 +90,32 @@ const RaycasterPointer = () => {
         color="orange"
         position={position}
       />
-
-      {/* Visual Marker for the Light */}
-      {/*
-      <mesh position={position}>
-        <sphereGeometry args={[0.1, 16, 16]} />
-        <meshStandardMaterial color="orange" />
-      </mesh>
-      */}
-
-      {/* Box mesh */}
-      {/* 
-      <mesh position={[1, 1, 0]}>
-        <boxGeometry args={[0.5, 0.5, 0.5]} />
-        <meshStandardMaterial color="green" />
-      </mesh>
-      */}
-
-       {/* FBX Statue */}
-       <mesh position={[5,-8,0]} scale={100} onPointerMove={handlePointerMove} rotation={[0, THREE.MathUtils.degToRad(-30), 0]}>
-        <FBXModel path="/3dObjects/fbxStatue.fbx"  />
-        <meshStandardMaterial color="red" />
-       </mesh>
     </>
   );
 };
 
 const ThreeScene = () => (
   <Canvas
-  style={{
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    zIndex: 1, // Ensure the canvas is above other content
-  }}
-  camera={{
-    position: [0, 0, 5], // Camera position
-    fov: 75, // Field of view for perspective camera
-  }}>
-    {/* Add an ambient light for slight overall illumination */}
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      zIndex: 1,
+    }}
+    camera={{
+      position: [0, 0, 5],
+      fov: 75,
+    }}
+  >
     <ambientLight intensity={0.1} />
     <RaycasterPointer />
+
+    {/* FBX Model */}
+    <mesh scale={30} position={[0,-3,0]}>
+        <FBXModel path="/3dObjects/fbxStatue.fbx" />
+    </mesh>
   </Canvas>
 );
 
