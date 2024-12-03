@@ -4,44 +4,17 @@ import * as THREE from "three";
 import { Html } from "@react-three/drei";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 
-const FBXModel = ({ path }: { path: string }) => {
+const FBXModel = ({ path, onHover }: { path: string; onHover: (hovered: boolean) => void }) => {
   const model = useLoader(FBXLoader, path);
-  const groupRef = useRef<THREE.Group>(null); // Reference to the FBX model
-  const [isHovered, setIsHovered] = useState(false); // Hover state
-  const [hoverPosition, setHoverPosition] = useState<[number, number, number]>([0, 0, 0]);
-
-  const raycaster = useRef(new THREE.Raycaster());
-  const mouse = useThree((state) => state.mouse);
-
-  useFrame(({ camera }) => {
-    if (groupRef.current) {
-      // Update raycaster based on the mouse position
-      raycaster.current.setFromCamera(mouse, camera);
-
-      // Check intersections with the FBX model
-      const intersects = raycaster.current.intersectObject(groupRef.current, true);
-
-      if (intersects.length > 0) {
-        setIsHovered(true);
-        setHoverPosition([
-          intersects[0].point.x,
-          intersects[0].point.y,
-          intersects[0].point.z,
-        ]);
-      } else {
-        setIsHovered(false);
-      }
-    }
-  });
+  const groupRef = useRef<THREE.Group>(null);
 
   return (
-    <group ref={groupRef}>
+    <group
+      ref={groupRef}
+      onPointerOver={() => onHover(true)}
+      onPointerOut={() => onHover(false)}
+    >
       <primitive object={model} scale={0.01} />
-      {isHovered && (
-        <Html position={[0,0,0]} style={{ color: "white", fontSize: "16px", background: "black", padding: "5px", borderRadius: "5px" }}>
-          Hovering over the model!
-        </Html>
-      )}
     </group>
   );
 };
@@ -94,7 +67,14 @@ const RaycasterPointer = () => {
   );
 };
 
-const ThreeScene = () => (
+const ThreeScene = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleHover = () => {
+    setIsHovered(true); // Show HTML
+    setTimeout(() => setIsHovered(false), 5000); // Hide HTML after 5 seconds
+  };
+  return(
   <Canvas
     style={{
       position: "fixed",
@@ -113,10 +93,35 @@ const ThreeScene = () => (
     <RaycasterPointer />
 
     {/* FBX Model */}
-    <mesh scale={30} position={[0,-3,0]}>
-        <FBXModel path="/3dObjects/fbxStatue.fbx" />
-    </mesh>
+    <group scale={15}>
+    <FBXModel
+          path="/3dObjects/fbxStatue.fbx"
+          onHover={handleHover}
+        />
+    </group>
+   
+   {/* HTML Element in the upper-left corner */}
+   {isHovered && (
+    <Html position={[-5,0,0]}>
+      <div
+          style={{
+            position: "fixed", // Fix the position relative to the screen
+            top: "10px", // Position near the top
+            left: "10px", // Position near the left
+            backgroundColor: "rgba(0, 0, 0, 0.8)", // Semi-transparent background
+            color: "white",
+            padding: "10px",
+            borderRadius: "5px",
+            fontSize: "16px",
+            zIndex: 10, // Ensure it stays above the Canvas
+          }}
+        >
+          Hovering over the model!
+        </div>
+    </Html>
+      )}
   </Canvas>
-);
+  )
+};
 
 export default ThreeScene;
