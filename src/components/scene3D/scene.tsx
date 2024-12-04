@@ -101,6 +101,10 @@ const ThreeScene = () => {
           <span>C</span><span>S</span><span>S</span><span>&nbsp;</span><span>S</span><span>m</span><span>o</span><span>k</span><span>y</span><span>&nbsp;</span><span>T</span><span>e</span><span>x</span><span>t</span><span>&nbsp;</span><span>E</span><span>f</span><span>f</span><span>e</span><span>c</span><span>t</span>
         </div>
       )}
+      {/*"The search is an endless journey, always transforming in new directions."
+"Sometimes we find what we need, even if it's not what we expected."
+"It is uncertainty that drives us to move forward, to continue exploring."
+"If what you are looking for is to stand out, you have found the right path."*/}
       <Canvas
         style={{
           position: "fixed",
