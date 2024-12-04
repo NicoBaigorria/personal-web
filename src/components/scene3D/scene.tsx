@@ -1,23 +1,44 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Canvas, useThree, useLoader, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { Html } from "@react-three/drei";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 import { relative } from "path";
 
-const FBXModel = ({ path, onHover }: { path: string; onHover: (hovered: boolean) => void }) => {
+const FBXModel = ({ path,
+  texturePath,
+   onHover, }: {  
+  path: string;
+  texturePath: string;
+  onHover: (hovered: boolean) => void;
+ }) => {
   const model = useLoader(FBXLoader, path);
+  const texture = useLoader(THREE.TextureLoader, texturePath);
   const groupRef = useRef<THREE.Group>(null);
 
-  return (
-    <group
-      ref={groupRef}
-      onPointerOver={() => onHover(true)}
-      onPointerOut={() => onHover(false)}
-    >
-      <primitive object={model} scale={0.01} />
-    </group>
-  );
+  useEffect(() => {
+    // Traverse the model and apply the texture
+    model.traverse((child) => {
+      if ((child as THREE.Mesh).isMesh) {
+        const mesh = child as THREE.Mesh;
+        if (mesh.material) {
+          mesh.material = new THREE.MeshStandardMaterial({
+            map: texture,
+          });
+        }
+      }
+    });
+  }, [model, texture]);
+
+return (
+  <group
+    ref={groupRef}
+    onPointerOver={() => onHover(true)}
+    onPointerOut={() => onHover(false)}
+  >
+    <primitive object={model} scale={0.01} />
+  </group>
+);
 };
 
 const RaycasterPointer = () => {
@@ -83,21 +104,16 @@ const ThreeScene = () => {
     }}>
       {isHovered && (
         <div
+        className="smokeText"
           style={{
             position: "absolute",
-            width: "fit-content",
-            height: "fit-content",
             margin: "auto",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom:0,
-            color: "white",
+           height: "100%",
+           width: "100%",
+           textAlign: "center",
             zIndex: 10,
             overflow: "auto",
             pointerEvents: "none", // Disable pointer events on this element
-            paddingTop: "80px",
-            paddingRight: "80px"
           }}
         >
           <span>C</span><span>S</span><span>S</span><span>&nbsp;</span><span>S</span><span>m</span><span>o</span><span>k</span><span>y</span><span>&nbsp;</span><span>T</span><span>e</span><span>x</span><span>t</span><span>&nbsp;</span><span>E</span><span>f</span><span>f</span><span>e</span><span>c</span><span>t</span>
@@ -125,9 +141,10 @@ const ThreeScene = () => {
         <RaycasterPointer />
 
         {/* FBX Model */}
-        <group scale={0.5} position={[1, 0, 0.5]} rotation={[(Math.PI / 2), -1 * 0, Math.PI / 12]}>
+        <group scale={1} position={[2, 0, 0.5]} rotation={[(Math.PI / 2), -1 * Math.PI / 12, Math.PI / 12]}>
           <FBXModel
             path="/3dObjects/oldmap.fbx"
+            texturePath="3dObjects/greekmap.png"
             onHover={handleHover}
           />
         </group>

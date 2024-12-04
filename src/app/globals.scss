@@ -10,24 +10,28 @@ canvas {
 }
 
 // Body styles
-body {
-  background: black;
-  overflow: hidden;
-  font: "Finger Paint";
+.smokeText {
+  overflow: hidden !important;
+  font: 18px "Finger Paint";
   text-align: center;
   color: transparent;
   backface-visibility: hidden;
-  margin: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: auto;
 }
 
 // Span animation with smoky effect
-span {
+.smokeText span {
   display: inline-block;
   text-shadow: 0 0 0 whitesmoke;
   animation: smoky 5s 3s both;
 }
 
-span:nth-child(even) {
+.smokeText span:nth-child(even) {
   animation-name: smoky-mirror;
 }
 
@@ -36,12 +40,10 @@ span:nth-child(even) {
   60% {
     text-shadow: 0 0 40px whitesmoke;
   }
+
   to {
     transform:
-      translate3d(15rem, -8rem, 0)
-      rotate(-40deg)
-      skewX(70deg)
-      scale(1.5);
+      translate3d(15rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
     text-shadow: 0 0 20px whitesmoke;
     opacity: 0;
   }
@@ -51,12 +53,10 @@ span:nth-child(even) {
   60% {
     text-shadow: 0 0 40px whitesmoke;
   }
+
   to {
     transform:
-      translate3d(18rem, -8rem, 0)
-      rotate(-40deg)
-      skewX(-70deg)
-      scale(2);
+      translate3d(18rem, -8rem, 0) rotate(-40deg) skewX(-70deg) scale(2);
     text-shadow: 0 0 20px whitesmoke;
     opacity: 0;
   }
@@ -66,6 +66,6 @@ span:nth-child(even) {
 
 @for $item from 1 through 21 {
   span:nth-of-type(#{$item}) {
-    animation-delay: #{3 + math.div($item, 10)}s;
+    animation-delay: #{2 + math.div($item, 10)}s;
   }
 }
