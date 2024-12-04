@@ -3,6 +3,7 @@ import { Canvas, useThree, useLoader, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { Html } from "@react-three/drei";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
+import { relative } from "path";
 
 const FBXModel = ({ path, onHover }: { path: string; onHover: (hovered: boolean) => void }) => {
   const model = useLoader(FBXLoader, path);
@@ -74,53 +75,59 @@ const ThreeScene = () => {
     setIsHovered(true); // Show HTML
     setTimeout(() => setIsHovered(false), 5000); // Hide HTML after 5 seconds
   };
-  return(
-  <Canvas
-    style={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      zIndex: 1,
-    }}
-    camera={{
-      position: [0, 0, 5],
-      fov: 75,
-    }}
-  >
-    <ambientLight intensity={0.1} />
-    <RaycasterPointer />
-
-    {/* FBX Model */}
-    <group scale={15}>
-    <FBXModel
-          path="/3dObjects/fbxStatue.fbx"
-          onHover={handleHover}
-        />
-    </group>
-   
-   {/* HTML Element in the upper-left corner */}
-   {isHovered && (
-    <Html position={[-5,0,0]}>
-      <div
+  return (
+    <div style={{
+      position: "relative",
+      width: "50vw",
+      height: "100vh",
+    }}>
+      {isHovered && (
+        <div
           style={{
-            position: "fixed", // Fix the position relative to the screen
-            top: "10px", // Position near the top
-            left: "10px", // Position near the left
-            backgroundColor: "rgba(0, 0, 0, 0.8)", // Semi-transparent background
+            position: "absolute",
+            width: "fit-content",
+            height: "fit-content",
+            margin: "auto",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom:0,
             color: "white",
-            padding: "10px",
-            borderRadius: "5px",
-            fontSize: "16px",
-            zIndex: 10, // Ensure it stays above the Canvas
+            zIndex: 10,
+            overflow: "auto",
+            pointerEvents: "none", // Disable pointer events on this element
           }}
         >
-          Hovering over the model!
+          <span>C</span><span>S</span><span>S</span><span>&nbsp;</span><span>S</span><span>m</span><span>o</span><span>k</span><span>y</span><span>&nbsp;</span><span>T</span><span>e</span><span>x</span><span>t</span><span>&nbsp;</span><span>E</span><span>f</span><span>f</span><span>e</span><span>c</span><span>t</span>
         </div>
-    </Html>
       )}
-  </Canvas>
+      <Canvas
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: 1,
+        }}
+        camera={{
+          position: [0, 0, 5],
+          fov: 75,
+        }}
+      >
+        <ambientLight intensity={0.1} />
+        <RaycasterPointer />
+
+        {/* FBX Model */}
+        <group scale={60} position={[3, -5, 0]} rotation={[0, -1 * (Math.PI / 4), 0]}>
+          <FBXModel
+            path="/3dObjects/fbxStatue.fbx"
+            onHover={handleHover}
+          />
+        </group>
+
+      </Canvas>
+    </div>
   )
 };
 
