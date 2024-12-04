@@ -42,10 +42,10 @@ const RaycasterPointer = () => {
       const intersects = raycaster.intersectObject(planeRef.current);
       if (intersects.length > 0) {
         const intersect = intersects[0].point;
-        setPosition(new THREE.Vector3(intersect.x, intersect.y, intersect.z + 1));
+        setPosition(new THREE.Vector3(intersect.x, intersect.y, intersect.z + 2));
 
         if (lightRef.current) {
-          lightRef.current.position.set(intersect.x, intersect.y, intersect.z + 1);
+          lightRef.current.position.set(intersect.x, intersect.y, intersect.z + 2);
         }
       }
     }
@@ -60,7 +60,7 @@ const RaycasterPointer = () => {
       <pointLight
         ref={lightRef}
         intensity={10}
-        distance={5}
+        distance={10}
         color="orange"
         position={position}
       />
@@ -96,6 +96,8 @@ const ThreeScene = () => {
             zIndex: 10,
             overflow: "auto",
             pointerEvents: "none", // Disable pointer events on this element
+            paddingTop: "80px",
+            paddingRight: "80px"
           }}
         >
           <span>C</span><span>S</span><span>S</span><span>&nbsp;</span><span>S</span><span>m</span><span>o</span><span>k</span><span>y</span><span>&nbsp;</span><span>T</span><span>e</span><span>x</span><span>t</span><span>&nbsp;</span><span>E</span><span>f</span><span>f</span><span>e</span><span>c</span><span>t</span>
@@ -123,9 +125,9 @@ const ThreeScene = () => {
         <RaycasterPointer />
 
         {/* FBX Model */}
-        <group scale={60} position={[3, -5, 0]} rotation={[0, -1 * (Math.PI / 4), 0]}>
+        <group scale={0.5} position={[1, 0, 0.5]} rotation={[(Math.PI / 2), -1 * 0, Math.PI / 12]}>
           <FBXModel
-            path="/3dObjects/fbxStatue.fbx"
+            path="/3dObjects/oldmap.fbx"
             onHover={handleHover}
           />
         </group>
