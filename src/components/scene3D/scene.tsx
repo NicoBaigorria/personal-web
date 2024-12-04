@@ -7,11 +7,11 @@ import { relative } from "path";
 
 const FBXModel = ({ path,
   texturePath,
-   onHover, }: {  
-  path: string;
-  texturePath: string;
-  onHover: (hovered: boolean) => void;
- }) => {
+  onHover, }: {
+    path: string;
+    texturePath: string;
+    onHover: (hovered: boolean) => void;
+  }) => {
   const model = useLoader(FBXLoader, path);
   const texture = useLoader(THREE.TextureLoader, texturePath);
   const groupRef = useRef<THREE.Group>(null);
@@ -30,15 +30,15 @@ const FBXModel = ({ path,
     });
   }, [model, texture]);
 
-return (
-  <group
-    ref={groupRef}
-    onPointerOver={() => onHover(true)}
-    onPointerOut={() => onHover(false)}
-  >
-    <primitive object={model} scale={0.01} />
-  </group>
-);
+  return (
+    <group
+      ref={groupRef}
+      onPointerOver={() => onHover(true)}
+      onPointerOut={() => onHover(false)}
+    >
+      <primitive object={model} scale={0.01} />
+    </group>
+  );
 };
 
 const RaycasterPointer = () => {
@@ -80,8 +80,8 @@ const RaycasterPointer = () => {
       </mesh>
       <pointLight
         ref={lightRef}
-        intensity={10}
-        distance={10}
+        intensity={5}
+        distance={3}
         color="orange"
         position={position}
       />
@@ -104,20 +104,25 @@ const ThreeScene = () => {
     }}>
       {isHovered && (
         <div
-        className="smokeText"
+          className="smokeText"
           style={{
             position: "absolute",
-            margin: "auto",
-           height: "100%",
-           width: "100%",
-           textAlign: "center",
+            textAlign: "center",
             zIndex: 10,
-            overflow: "auto",
             pointerEvents: "none", // Disable pointer events on this element
           }}
         >
-          <span>C</span><span>S</span><span>S</span><span>&nbsp;</span><span>S</span><span>m</span><span>o</span><span>k</span><span>y</span><span>&nbsp;</span><span>T</span><span>e</span><span>x</span><span>t</span><span>&nbsp;</span><span>E</span><span>f</span><span>f</span><span>e</span><span>c</span><span>t</span>
-        </div>
+          <div><span>T</span><span>h</span><span>e</span></div>
+  <div><span>s</span><span>e</span><span>a</span><span>r</span><span>c</span><span>h</span></div>
+  <div><span>i</span><span>s</span></div>
+  <div><span>a</span><span>n</span></div>
+  <div><span>e</span><span>n</span><span>d</span><span>l</span><span>e</span><span>s</span><span>s</span></div>
+  <div><span>j</span><span>o</span><span>u</span><span>r</span><span>n</span><span>e</span><span>y</span><span>,</span></div>
+  <div><span>a</span><span>l</span><span>w</span><span>a</span><span>y</span><span>s</span></div>
+  <div><span>t</span><span>r</span><span>a</span><span>n</span><span>s</span><span>f</span><span>o</span><span>r</span><span>m</span><span>i</span><span>n</span><span>g</span></div>
+  <div><span>i</span><span>n</span></div>
+  <div><span>n</span><span>e</span><span>w</span></div>
+  <div><span>d</span><span>i</span><span>r</span><span>e</span><span>c</span><span>t</span><span>i</span><span>o</span><span>n</span><span>s</span><span>.</span></div>        </div>
       )}
       {/*"The search is an endless journey, always transforming in new directions."
 "Sometimes we find what we need, even if it's not what we expected."
@@ -137,7 +142,7 @@ const ThreeScene = () => {
           fov: 75,
         }}
       >
-        <ambientLight intensity={0.1} />
+        <ambientLight intensity={0} />
         <RaycasterPointer />
 
         {/* FBX Model */}

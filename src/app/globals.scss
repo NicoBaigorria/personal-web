@@ -11,61 +11,69 @@ canvas {
 
 // Body styles
 .smokeText {
-  overflow: hidden !important;
-  font: 18px "Finger Paint";
-  text-align: center;
+  font: 1.5rem "Finger Paint";
   color: transparent;
   backface-visibility: hidden;
-  height: 100%;
-  width: 100%;
-  display: flex;
   align-items: center;
   text-align: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: fit-content;
+  width: fit-content;
   margin: auto;
+  position: absolute;
+}
+
+.smokeText >div {
+  display: flex;
+}
+.smokeText div:first-child {
+  margin-top: auto;
+}
+.smokeText div:last-child {
+  margin-bottom: auto;
 }
 
 // Span animation with smoky effect
 .smokeText span {
   display: inline-block;
   text-shadow: 0 0 0 whitesmoke;
-  animation: smoky 5s 3s both;
+  animation: smoky 5s 0s both; // Duration includes the 5s pause
 }
 
-.smokeText span:nth-child(even) {
-  animation-name: smoky-mirror;
+.smokeText span:first-child {
+ margin-left: auto;
 }
+
+.smokeText span:last-child {
+  margin-right: auto;
+ }
 
 // Keyframes for the smoky effect
 @keyframes smoky {
-  60% {
-    text-shadow: 0 0 40px whitesmoke;
-  }
-
-  to {
-    transform:
-      translate3d(15rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
+  0% {
+    transform: translate3d(-8rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
     text-shadow: 0 0 20px whitesmoke;
     opacity: 0;
   }
-}
-
-@keyframes smoky-mirror {
-  60% {
-    text-shadow: 0 0 40px whitesmoke;
+  40% {
+    transform: translate3d(0, 0, 0) rotate(0deg) skewX(0deg) scale(1);
+    text-shadow: 0 0 0px whitesmoke;
+    opacity: 1;
   }
 
-  to {
-    transform:
-      translate3d(18rem, -8rem, 0) rotate(-40deg) skewX(-70deg) scale(2);
+  100% {
+    transform: translate3d(8rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
     text-shadow: 0 0 20px whitesmoke;
     opacity: 0;
   }
 }
 
 // Animation delay for spans using loop logic
-
 @for $item from 1 through 21 {
   span:nth-of-type(#{$item}) {
-    animation-delay: #{2 + math.div($item, 10)}s;
+    animation-delay: #{math.div($item * 2, 21)}s;
   }
 }
