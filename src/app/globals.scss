@@ -46,7 +46,7 @@ canvas {
 .smokeText span {
   display: inline-block;
   text-shadow: 0 0 0 whitesmoke;
-  animation: smoky 5s 0s both; // Duration includes the 5s pause
+  animation: smoky 5s both; // Duration includes the 5s pause
 }
 
 .smokeText span:first-child {
@@ -64,12 +64,23 @@ canvas {
     text-shadow: 0 0 20px whitesmoke;
     opacity: 0;
   }
-  40% {
+  20% {
     transform: translate3d(0, 0, 0) rotate(0deg) skewX(0deg) scale(1);
     text-shadow: 0 0 0px whitesmoke;
     opacity: 1;
   }
 
+  60% {
+    transform: translate3d(0, 0, 0) rotate(0deg) skewX(0deg) scale(1);
+    text-shadow: 0 0 0px whitesmoke;
+    opacity: 1;
+  }
+
+  90% {
+    transform: translate3d(8rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
+    text-shadow: 0 0 20px whitesmoke;
+    opacity: 0;
+  }
   100% {
     transform: translate3d(8rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
     text-shadow: 0 0 20px whitesmoke;
