@@ -1,57 +1,47 @@
-import { ShaderMaterial, WebGLProgramParametersWithUniforms, WebGLRenderer } from "three";
+import * as THREE from "three";
 
-// Function to replace parts of the fragment shader string
-const replaceFragmentShader = (fragmentShader: string): string =>
+const replaceFragmentShader = (fragmentShader:any) =>
   fragmentShader
     .replace(
       `#include <common>`,
       `#include <common>
-      float exponentialEasing(float x, float a) {
-        float epsilon = 0.00001;
-        float min_param_a = 0.0 + epsilon;
-        float max_param_a = 1.0 - epsilon;
-        a = max(min_param_a, min(max_param_a, a));
-
-        if (a < 0.5){
-          // emphasis
-          a = 2.0*(a);
-          float y = pow(x, a);
-          return y;
-        } else {
-          // de-emphasis
-          a = 2.0*(a-0.5);
-          float y = pow(x, 1.0/(1.0-a));
-          return y;
-        }
-      }`
+  float exponentialEasing(float x, float a) {
+  
+    float epsilon = 0.00001;
+    float min_param_a = 0.0 + epsilon;
+    float max_param_a = 1.0 - epsilon;
+    a = max(min_param_a, min(max_param_a, a));
+    
+    if (a < 0.5){
+      // emphasis
+      a = 2.0*(a);
+      float y = pow(x, a);
+      return y;
+    } else {
+      // de-emphasis
+      a = 2.0*(a-0.5);
+      float y = pow(x, 1.0/(1.0-a));
+      return y;
+    }
+  }`
     )
     .replace(
       `vec4 diffuseColor = vec4( diffuse, opacity );`,
       `
-      float fadeDist = 350.0;
-      float dist = length(vViewPosition);
+float fadeDist = 350.0;
+float dist = length(vViewPosition);
 
-      float fadeOpacity = smoothstep(fadeDist, 0.0, dist);
-      fadeOpacity = exponentialEasing(fadeOpacity, 0.93);
-      vec4 diffuseColor = vec4( diffuse, fadeOpacity * opacity );`
+float fadeOpacity = smoothstep(fadeDist, 0.0, dist);
+fadeOpacity = exponentialEasing(fadeOpacity, 0.93);
+vec4 diffuseColor = vec4( diffuse, fadeOpacity * opacity );`
     );
 
-// Updated function for `onBeforeCompile` signature
-export const fadeOnBeforeCompile = (
-  parameters: WebGLProgramParametersWithUniforms,
-  renderer: WebGLRenderer
-): void => {
-  // Modify the fragmentShader directly
-  parameters.fragmentShader = replaceFragmentShader(parameters.fragmentShader);
+export const fadeOnBeforeCompile = (shader:any) => {
+  shader.fragmentShader = replaceFragmentShader(shader.fragmentShader);
 };
 
-// Updated function for flat shader compilation
-export const fadeOnBeforeCompileFlat = (
-  parameters: WebGLProgramParametersWithUniforms,
-  renderer: WebGLRenderer
-): void => {
-  // Modify the fragmentShader directly
-  parameters.fragmentShader = replaceFragmentShader(parameters.fragmentShader).replace(
+export const fadeOnBeforeCompileFlat = (shader:any) => {
+  shader.fragmentShader = replaceFragmentShader(shader.fragmentShader).replace(
     `#include <output_fragment>`,
     `gl_FragColor = diffuseColor;`
   );

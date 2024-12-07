@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { Background } from "./Background";
 import { TextSection } from "./TextSection";
 
-const LINE_NB_POINTS = 1000;
+const LINE_NB_POINTS = 12000;
 const CURVE_DISTANCE = 250;
 const CURVE_AHEAD_CAMERA = 0.008;
 
@@ -33,7 +33,7 @@ export const Experience = () => {
             {
                 cameraRailDist: -1,
                 position: new THREE.Vector3(
-                    curvePoints[1].x - 3,
+                    curvePoints[1].x,
                     curvePoints[1].y,
                     curvePoints[1].z
                 ),
@@ -43,7 +43,7 @@ export const Experience = () => {
             {
                 cameraRailDist: 1.5,
                 position: new THREE.Vector3(
-                    curvePoints[2].x + 2,
+                    curvePoints[2].x,
                     curvePoints[2].y,
                     curvePoints[2].z
                 ),
@@ -54,7 +54,7 @@ export const Experience = () => {
             {
                 cameraRailDist: -1,
                 position: new THREE.Vector3(
-                    curvePoints[3].x - 3,
+                    curvePoints[3].x,
                     curvePoints[3].y,
                     curvePoints[3].z
                 ),
@@ -64,9 +64,9 @@ export const Experience = () => {
             {
                 cameraRailDist: 1.5,
                 position: new THREE.Vector3(
-                    curvePoints[4].x + 3.5,
+                    curvePoints[4].x,
                     curvePoints[4].y,
-                    curvePoints[4].z - 12
+                    curvePoints[4].z
                 ),
                 title: "Movies",
                 subtitle: `We provide a large selection of medias, we highly recommend you Porco Rosso during the flight`,
@@ -121,10 +121,12 @@ export const Experience = () => {
             <group ref={cameraGroup}>
                 <Background />
                 <PerspectiveCamera position={[0, 0, 5]} fov={30} makeDefault />
-
                 <ambientLight intensity={0} /> {/* Add ambient light */}
-                <Float floatIntensity={2} speed={2}>
+                <Float floatIntensity={2} speed={20}>
                     <pointLight intensity={10} distance={10} decay={2} color={"yellow"} />
+                    <mesh>
+                    <boxGeometry args={[0.1,0.1,0.1]}></boxGeometry>
+                    </mesh>
                 </Float>
             </group>
 
