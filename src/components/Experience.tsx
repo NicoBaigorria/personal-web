@@ -33,7 +33,7 @@ export const Experience = () => {
             {
                 cameraRailDist: -1,
                 position: new THREE.Vector3(
-                    curvePoints[1].x,
+                    curvePoints[1].x-1,
                     curvePoints[1].y,
                     curvePoints[1].z
                 ),
@@ -43,7 +43,7 @@ export const Experience = () => {
             {
                 cameraRailDist: 1.5,
                 position: new THREE.Vector3(
-                    curvePoints[2].x,
+                    curvePoints[2].x-1,
                     curvePoints[2].y,
                     curvePoints[2].z
                 ),
@@ -54,7 +54,7 @@ export const Experience = () => {
             {
                 cameraRailDist: -1,
                 position: new THREE.Vector3(
-                    curvePoints[3].x,
+                    curvePoints[3].x-1,
                     curvePoints[3].y,
                     curvePoints[3].z
                 ),
@@ -64,7 +64,7 @@ export const Experience = () => {
             {
                 cameraRailDist: 1.5,
                 position: new THREE.Vector3(
-                    curvePoints[4].x,
+                    curvePoints[4].x-1,
                     curvePoints[4].y,
                     curvePoints[4].z
                 ),
@@ -80,8 +80,8 @@ export const Experience = () => {
 
     const shape = useMemo(() => {
         const shape = new THREE.Shape();
-        shape.moveTo(0, -0.2);
-        shape.lineTo(0, 0.2);
+        shape.moveTo(0, -2);
+        shape.lineTo(0, 2);
 
         return shape;
     }, [curve]);
