@@ -1,13 +1,50 @@
 import { Float, PerspectiveCamera, Text, useScroll, OrbitControls } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import { useFrame, useLoader } from "@react-three/fiber";
+import { useMemo, useRef, useEffect, FC } from "react";
 import * as THREE from "three";
 import { Background } from "./Background";
 import { TextSection } from "./TextSection";
+import { FBXLoader } from "three/examples/jsm/Addons.js";
+import path from "path";
+import {Iceberg} from "./IceBerg";
 
 const LINE_NB_POINTS = 12000;
 const CURVE_DISTANCE = 250;
 const CURVE_AHEAD_CAMERA = 0.008;
+
+type FBXModelType = {
+    path: string;
+};
+
+const FBXModel: FC<FBXModelType> = ({ path }) => {
+  const model = useLoader(FBXLoader, path); // Load the FBX model
+  const groupRef = useRef<THREE.Group>(null);
+
+  // Modify materials once the model is loaded
+  useEffect(() => {
+    if (model && model instanceof THREE.Object3D) {
+      model.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          // Change the material of each mesh
+          child.material = new THREE.MeshStandardMaterial({
+            color: new THREE.Color("lightblue"), // Example: red color
+            roughness: 0.5,
+            metalness: 0.5,
+          });
+        }
+      });
+    }
+  }, [model]);
+
+  return (
+    <group ref={groupRef}>
+      <primitive object={model} scale={0.01} />
+    </group>
+  );
+};
+
+export default FBXModel;
+
 
 export const Experience = () => {
     const curvePoints = useMemo(
@@ -74,6 +111,189 @@ export const Experience = () => {
         ];
     }, []);
 
+    const icebergs = useMemo(
+        () => [
+          // STARTING
+          {
+            position: new THREE.Vector3(-3.5, -3.2, -7),
+          },
+          {
+            position: new THREE.Vector3(3.5, -4, -10),
+          },
+          {
+            scale: new THREE.Vector3(4, 4, 4),
+            position: new THREE.Vector3(-18, 0.2, -68),
+            rotation: new THREE.Euler(-Math.PI / 5, Math.PI / 6, 0),
+          },
+          {
+            scale: new THREE.Vector3(2.5, 2.5, 2.5),
+            position: new THREE.Vector3(10, -1.2, -52),
+          },
+          // FIRST POINT
+          {
+            scale: new THREE.Vector3(4, 4, 4),
+            position: new THREE.Vector3(
+              curvePoints[1].x + 10,
+              curvePoints[1].y - 4,
+              curvePoints[1].z + 64
+            ),
+          },
+          {
+            scale: new THREE.Vector3(3, 3, 3),
+            position: new THREE.Vector3(
+              curvePoints[1].x - 20,
+              curvePoints[1].y + 4,
+              curvePoints[1].z + 28
+            ),
+            rotation: new THREE.Euler(0, Math.PI / 7, 0),
+          },
+          {
+            rotation: new THREE.Euler(0, Math.PI / 7, Math.PI / 5),
+            scale: new THREE.Vector3(5, 5, 5),
+            position: new THREE.Vector3(
+              curvePoints[1].x - 13,
+              curvePoints[1].y + 4,
+              curvePoints[1].z - 62
+            ),
+          },
+          {
+            rotation: new THREE.Euler(Math.PI / 2, Math.PI / 2, Math.PI / 3),
+            scale: new THREE.Vector3(5, 5, 5),
+            position: new THREE.Vector3(
+              curvePoints[1].x + 54,
+              curvePoints[1].y + 2,
+              curvePoints[1].z - 82
+            ),
+          },
+          {
+            scale: new THREE.Vector3(5, 5, 5),
+            position: new THREE.Vector3(
+              curvePoints[1].x + 8,
+              curvePoints[1].y - 14,
+              curvePoints[1].z - 22
+            ),
+          },
+          // SECOND POINT
+          {
+            scale: new THREE.Vector3(3, 3, 3),
+            position: new THREE.Vector3(
+              curvePoints[2].x + 6,
+              curvePoints[2].y - 7,
+              curvePoints[2].z + 50
+            ),
+          },
+          {
+            scale: new THREE.Vector3(2, 2, 2),
+            position: new THREE.Vector3(
+              curvePoints[2].x - 2,
+              curvePoints[2].y + 4,
+              curvePoints[2].z - 26
+            ),
+          },
+          {
+            scale: new THREE.Vector3(4, 4, 4),
+            position: new THREE.Vector3(
+              curvePoints[2].x + 12,
+              curvePoints[2].y + 1,
+              curvePoints[2].z - 86
+            ),
+            rotation: new THREE.Euler(Math.PI / 4, 0, Math.PI / 3),
+          },
+          // THIRD POINT
+          {
+            scale: new THREE.Vector3(3, 3, 3),
+            position: new THREE.Vector3(
+              curvePoints[3].x + 3,
+              curvePoints[3].y - 10,
+              curvePoints[3].z + 50
+            ),
+          },
+          {
+            scale: new THREE.Vector3(3, 3, 3),
+            position: new THREE.Vector3(
+              curvePoints[3].x - 10,
+              curvePoints[3].y,
+              curvePoints[3].z + 30
+            ),
+            rotation: new THREE.Euler(Math.PI / 4, 0, Math.PI / 5),
+          },
+          {
+            scale: new THREE.Vector3(4, 4, 4),
+            position: new THREE.Vector3(
+              curvePoints[3].x - 20,
+              curvePoints[3].y - 5,
+              curvePoints[3].z - 8
+            ),
+            rotation: new THREE.Euler(Math.PI, 0, Math.PI / 5),
+          },
+          {
+            scale: new THREE.Vector3(5, 5, 5),
+            position: new THREE.Vector3(
+              curvePoints[3].x + 0,
+              curvePoints[3].y - 5,
+              curvePoints[3].z - 98
+            ),
+            rotation: new THREE.Euler(0, Math.PI / 3, 0),
+          },
+          // FOURTH POINT
+          {
+            scale: new THREE.Vector3(2, 2, 2),
+            position: new THREE.Vector3(
+              curvePoints[4].x + 3,
+              curvePoints[4].y - 10,
+              curvePoints[4].z + 2
+            ),
+          },
+          {
+            scale: new THREE.Vector3(3, 3, 3),
+            position: new THREE.Vector3(
+              curvePoints[4].x + 24,
+              curvePoints[4].y - 6,
+              curvePoints[4].z - 42
+            ),
+            rotation: new THREE.Euler(Math.PI / 4, 0, Math.PI / 5),
+          },
+          {
+            scale: new THREE.Vector3(3, 3, 3),
+            position: new THREE.Vector3(
+              curvePoints[4].x - 4,
+              curvePoints[4].y + 9,
+              curvePoints[4].z - 62
+            ),
+            rotation: new THREE.Euler(Math.PI / 3, 0, Math.PI / 3),
+          },
+          // FINAL
+          {
+            scale: new THREE.Vector3(3, 3, 3),
+            position: new THREE.Vector3(
+              curvePoints[7].x + 12,
+              curvePoints[7].y - 5,
+              curvePoints[7].z + 60
+            ),
+            rotation: new THREE.Euler(-Math.PI / 4, -Math.PI / 6, 0),
+          },
+          {
+            scale: new THREE.Vector3(3, 3, 3),
+            position: new THREE.Vector3(
+              curvePoints[7].x - 12,
+              curvePoints[7].y + 5,
+              curvePoints[7].z + 120
+            ),
+            rotation: new THREE.Euler(Math.PI / 4, Math.PI / 6, 0),
+          },
+          {
+            scale: new THREE.Vector3(4, 4, 4),
+            position: new THREE.Vector3(
+              curvePoints[7].x,
+              curvePoints[7].y,
+              curvePoints[7].z
+            ),
+            rotation: new THREE.Euler(0, 0, 0),
+          },
+        ],
+        []
+      );
+
     const linePoints = useMemo(() => {
         return curve.getPoints(LINE_NB_POINTS);
     }, [curve]);
@@ -122,10 +342,12 @@ export const Experience = () => {
                 <Background />
                 <PerspectiveCamera position={[0, 0, 5]} fov={30} makeDefault />
                 <ambientLight intensity={0} /> {/* Add ambient light */}
-                <Float floatIntensity={2} speed={20}>
+                <Float floatingRange={[0,0.05]} rotationIntensity={0.1} speed={10} position={[0,-2.4,-5]}>
                     <pointLight intensity={10} distance={10} decay={2} color={"yellow"} />
-                    <mesh>
-                    <boxGeometry args={[0.1,0.1,0.1]}></boxGeometry>
+                    <mesh scale={0.005} rotation={[0,(Math.PI / 2), 0]}>
+                    <FBXModel
+            path="/3dObjects/boat.fbx"
+          />
                     </mesh>
                 </Float>
             </group>
@@ -148,35 +370,14 @@ export const Experience = () => {
                             },
                         ]}
                     />
-                    <meshStandardMaterial color={"white"} opacity={0.7} transparent />
+                    <meshStandardMaterial color={"lightblue"} opacity={0.2} />
                 </mesh>
             </group>
 
-            {/* CUBES */}
-            <mesh scale={[1, 1, 1]} position={[-2, 1, -3]}>
-                <boxGeometry />
-                <meshStandardMaterial color={"lightblue"} />
-            </mesh>
-            <mesh scale={[1, 1.5, 1]} position={[1.5, -0.5, -2]}>
-                <boxGeometry />
-                <meshStandardMaterial color={"lightgreen"} />
-            </mesh>
-            <mesh scale={[1.5, 1, 1]} position={[2, -0.2, -2]}>
-                <boxGeometry />
-                <meshStandardMaterial color={"lightcoral"} />
-            </mesh>
-            <mesh scale={[2, 2, 2]} position={[1, -0.2, -12]}>
-                <boxGeometry />
-                <meshStandardMaterial color={"lightsalmon"} />
-            </mesh>
-            <mesh scale={[1.8, 1.8, 1.8]} position={[-1, 1, -53]}>
-                <boxGeometry />
-                <meshStandardMaterial color={"lightgoldenrodyellow"} />
-            </mesh>
-            <mesh scale={[2.5, 2.5, 2.5]} position={[0, 1, -100]}>
-                <boxGeometry />
-                <meshStandardMaterial color={"lightpink"} />
-            </mesh>
+            {/* Iceberg */}
+      {icebergs.map((iceberg, index) => (
+        <Iceberg {...iceberg} key={index} />
+      ))}
         </>
     );
 };

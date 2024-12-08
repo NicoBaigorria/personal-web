@@ -15,11 +15,11 @@ export const Background = () => {
           side={THREE.BackSide}
         >
           <Gradient
-            colorA={"darkblue"}
+            colorA={"lightblue"}
             colorB={"blue"}
             axes={"y"}
-            start={-0.2}
-            end={0.5}
+            start={0.15}
+            end={-0.1}
           />
         </LayerMaterial>
       </Sphere>
