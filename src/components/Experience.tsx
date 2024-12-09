@@ -343,7 +343,7 @@ export const Experience = () => {
                 <PerspectiveCamera position={[0, 0, 5]} fov={30} makeDefault />
                 <ambientLight intensity={0} /> {/* Add ambient light */}
                 <Float floatingRange={[0,0.05]} rotationIntensity={0.1} speed={10} position={[0,-2.4,-5]}>
-                    <pointLight intensity={10} distance={10} decay={2} color={"yellow"} />
+                    <pointLight intensity={10} distance={10} decay={2} color={"yellow"} position={[0,0.2,-1.5]} />
                     <mesh scale={0.005} rotation={[0,(Math.PI / 2), 0]}>
                     <FBXModel
             path="/3dObjects/boat.fbx"
@@ -370,14 +370,21 @@ export const Experience = () => {
                             },
                         ]}
                     />
-                    <meshStandardMaterial color={"lightblue"} opacity={0.2} />
+                    <meshStandardMaterial color={"lightblue"} opacity={1} />
                 </mesh>
             </group>
 
-            {/* Iceberg */}
-      {icebergs.map((iceberg, index) => (
-        <Iceberg {...iceberg} key={index} />
-      ))}
+
+    {icebergs.map((iceberg, index) => (
+
+      <Iceberg
+  key={index}
+  position={iceberg.position}
+  scale={iceberg.scale}
+  rotation={iceberg.rotation}
+      />
+    ))}
+    <OrbitControls/>
         </>
     );
 };
