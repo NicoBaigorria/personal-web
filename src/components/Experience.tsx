@@ -27,7 +27,7 @@ const FBXModel: FC<FBXModelType> = ({ path }) => {
         if (child instanceof THREE.Mesh) {
           // Change the material of each mesh
           child.material = new THREE.MeshStandardMaterial({
-            color: new THREE.Color("lightblue"), // Example: red color
+            color: new THREE.Color("darkblue"), // Example: red color
             roughness: 0.5,
             metalness: 0.5,
           });
@@ -253,31 +253,33 @@ export const Experience = () => {
   const cameraGroup = useRef<THREE.Group>(null!);
   const scroll = useScroll();
 
+
   useFrame((_state, delta) => {
-    const scrollOffset = Math.max(0, scroll.offset);
-
+    const maxScrollOffset = 0.98; // Stop the model at 90% of the path
+    const scrollOffset = Math.min(scroll.offset, maxScrollOffset); // Limit scroll offset
+  
     const curPoint = curve.getPoint(scrollOffset);
-
+  
     cameraGroup.current?.position.lerp(curPoint, delta * 24); // Safely access current
-
+  
     // Make the group look ahead on the curve
-
     const lookAtPoint = curve.getPoint(
       Math.min(scrollOffset + CURVE_AHEAD_CAMERA, 1)
     );
-
+  
     const currentLookAt = cameraGroup.current.getWorldDirection(
       new THREE.Vector3()
     );
     const targetLookAt = new THREE.Vector3()
       .subVectors(curPoint, lookAtPoint)
       .normalize();
-
+  
     const lookAt = currentLookAt.lerp(targetLookAt, delta * 24);
     cameraGroup.current.lookAt(
       cameraGroup.current.position.clone().add(lookAt)
     );
   });
+  
 
 
   return (
@@ -285,7 +287,7 @@ export const Experience = () => {
       <group ref={cameraGroup}>
         <Background />
         <PerspectiveCamera position={[0, -1, 5]} rotation={[0.1, 0, 0]} fov={30} makeDefault />
-        <ambientLight intensity={1} /> {/* Add ambient light */}
+        <ambientLight intensity={10} /> {/* Add ambient light */}
         <Float floatingRange={[0, 0.05]} rotationIntensity={0.1} speed={10} position={[0, -2.4, -5]}>
           {/*<pointLight intensity={10} distance={10} decay={2} color={"white"} position={[0, 0.2, -1.5]} />*/}
           <mesh scale={0.005} rotation={[0, (Math.PI / 2), 0]}>

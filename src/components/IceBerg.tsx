@@ -20,7 +20,7 @@ const FBXModel: FC<FBXModelType> = ({ positions, rotations, scales, path }) => {
       model.traverse((child) => {
         if (child instanceof THREE.Mesh) {
           child.material = new THREE.MeshStandardMaterial({
-            color: new THREE.Color("lightblue"),
+            color: new THREE.Color("white"),
             roughness: 0.5,
             metalness: 0.5,
           });
