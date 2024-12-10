@@ -17,7 +17,7 @@ type TextSectionProps = {
     <group {...props}>
       {!!title && (
         <Text
-          color="white"
+          color="black"
           anchorX={"left"}
           anchorY="bottom"
           fontSize={0.52}
@@ -27,14 +27,14 @@ type TextSectionProps = {
         >
           {title}
           <meshStandardMaterial
-            color={"white"}
+            color={"black"}
             onBeforeCompile={fadeOnBeforeCompileFlat}
           />
         </Text>
       )}
 
       <Text
-        color="white"
+        color="black"
         anchorX={"left"}
         anchorY="top"
         fontSize={0.2}
@@ -43,7 +43,7 @@ type TextSectionProps = {
       >
         {subtitle}
         <meshStandardMaterial
-          color={"white"}
+          color={"black"}
           onBeforeCompile={fadeOnBeforeCompileFlat}
         />
       </Text>
