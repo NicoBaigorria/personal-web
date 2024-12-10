@@ -35,7 +35,7 @@ const FBXModel: FC<FBXModelType> = ({ positions, rotations, scales, path }) => {
       {positions.map((position, index) => {
         const clone = model.clone(); // Clone the model
         clone.position.set(position.x, position.y, position.z); // Apply position
-        clone.rotation.set(-(Math.PI/2), rotations[index].y, rotations[index].z); // Apply rotation
+        clone.rotation.set(-(Math.PI / 2), rotations[index].y, rotations[index].z); // Apply rotation
         clone.scale.set(scales[index].x, scales[index].y, scales[index].z); // Apply scale
 
         return (
