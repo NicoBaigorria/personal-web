@@ -287,11 +287,9 @@ const scales = icebergs.map((item) => item.scale || new THREE.Vector3(1, 1, 1));
                 <PerspectiveCamera position={[0, -1, 5]} rotation={[0.1, 0, 0]} fov={30} makeDefault />
                 <ambientLight intensity={0} /> {/* Add ambient light */}
                 <Float floatingRange={[0,0.05]} rotationIntensity={0.1} speed={10} position={[0,-2.4,-5]}>
-                   {/*<pointLight intensity={10} distance={10} decay={2} color={"blue"} position={[0,0.2,-1.5]} />*/}
+                   <pointLight intensity={10} distance={10} decay={2} color={"blue"} position={[0,0.2,-1.5]} />
                     <mesh scale={0.005} rotation={[0,(Math.PI / 2), 0]}>
-                    <FBXModel
-            path="/3dObjects/boat.fbx"
-          />
+                    <FBXModel path="/3dObjects/boat.fbx" />
                     </mesh>
                 </Float>
             </group>
