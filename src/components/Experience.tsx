@@ -74,8 +74,9 @@ export const Experience = () => {
           curvePoints[1].y + 1,
           curvePoints[1].z
         ),
-        subtitle: `Welcome to Wawatmos,
-  Have a seat and enjoy the ride!`,
+        title: "The Journey Begins",
+        subtitle: `Every journey starts with a single step.
+  Keep moving forward without looking back.`,
       },
       {
         cameraRailDist: 1.5,
@@ -84,9 +85,8 @@ export const Experience = () => {
           curvePoints[2].y + 1,
           curvePoints[2].z
         ),
-        title: "Services",
-        subtitle: `Do you want a drink?
-  We have a wide range of beverages!`,
+        title: "Ups and Downs",
+        subtitle: `The path is full of challenges, but each one makes us stronger.`,
       },
       {
         cameraRailDist: -1,
@@ -95,8 +95,8 @@ export const Experience = () => {
           curvePoints[3].y + 1,
           curvePoints[3].z
         ),
-        title: "Fear of flying?",
-        subtitle: `Our flight attendants will help you have a great journey`,
+        title: "Continuous Learning",
+        subtitle: `Every obstacle is a lesson that brings us closer to the goal.`,
       },
       {
         cameraRailDist: 1.5,
@@ -105,11 +105,25 @@ export const Experience = () => {
           curvePoints[4].y + 1,
           curvePoints[4].z
         ),
-        title: "Movies",
-        subtitle: `We provide a large selection of medias, we highly recommend you Porco Rosso during the flight`,
+        title: "Together is Better",
+        subtitle: `Mutual support takes us further than we ever imagined.`,
+      },
+      {
+        cameraRailDist: -1,
+        position: new THREE.Vector3(
+          curvePoints[7].x - 1,
+          curvePoints[7].y + 4,
+          curvePoints[7].z + 18
+        ),
+        title: "Don't Stop",
+        subtitle: `Don't let obstacles hold you back.
+  Together, we can keep moving forward.
+  
+  https://linkedin.com/in/nicolas-baigorria | nicobaig@gmail.com`,
       },
     ];
   }, []);
+
 
   const icebergs = useMemo(
     () => [
