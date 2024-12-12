@@ -6,25 +6,50 @@ import * as THREE from "three";
 
 // Define the type for the props explicitly
 type TextSectionProps = {
-  title?: string; // Optional title
-  subtitle: string; // Subtitle is required
-  cameraRailDist: number;
-  position: THREE.Vector3;
-  // You can add more props as needed here
-};
+    title?: string; // Optional title
+    subtitle: string; // Subtitle is required
+    cameraRailDist: number;
+    position: THREE.Vector3;
+    // You can add more props as needed here
+  };
 
-export const TextSection: FC<TextSectionProps> = ({ title, subtitle, ...props }) => {
+  export const TextSection: FC<TextSectionProps> = ({ title, subtitle, ...props }) => {
   return (
+    <group {...props}>
+      {!!title && (
+        <Text
+          color="black"
+          anchorX={"left"}
+          anchorY="bottom"
+          fontSize={0.52}
+          maxWidth={2.5}
+          lineHeight={1}
+          //font={"./fonts/DMSerifDisplay-Regular.ttf"}
+        >
+          {title}
+          <meshStandardMaterial
+            color={"black"}
+            onBeforeCompile={fadeOnBeforeCompileFlat}
+          />
+        </Text>
+      )}
 
+      <Text
+        color="black"
+        anchorX={"left"}
+        anchorY="top"
+        fontSize={0.2}
+        maxWidth={2.5}
+        //font={"./fonts/Inter-Regular.ttf"}
+      >
+        {subtitle}
+        <meshStandardMaterial
+          color={"black"}
+          onBeforeCompile={fadeOnBeforeCompileFlat}
+        />
+      </Text>
+    </group>
      
-      <mesh {...props}>
-        <Html transform color="darkblue" scale={1} occlude>
-          <div style={{background: "red", position:"relative"}} >
-            <a target="_blank" href="https://www.linkedin.com/in/asfsafsa/" style={{background:"blue", color: 'orange', position:"absolute", bottom:0 }}>link</a>
-          </div>
-          
-        </Html>
-      </mesh>
 
   );
 };
