@@ -8,9 +8,10 @@ type FBXModelType = {
   positions: THREE.Vector3[];
   rotations: THREE.Euler[];
   scales: THREE.Vector3[];
+  opacity?: number; // Optional opacity property
 };
 
-const FBXModel: FC<FBXModelType> = ({ positions, rotations, scales, path }) => {
+const FBXModel: FC<FBXModelType> = ({ positions, rotations, scales, path, opacity = 1 }) => {
   const model = useLoader(FBXLoader, path); // Load the FBX model
   const groupRef = useRef<THREE.Group>(null);
 
@@ -21,13 +22,15 @@ const FBXModel: FC<FBXModelType> = ({ positions, rotations, scales, path }) => {
         if (child instanceof THREE.Mesh) {
           child.material = new THREE.MeshStandardMaterial({
             color: new THREE.Color("white"),
-            roughness: 0.5,
-            metalness: 0.5,
+            roughness: 0.2,
+            metalness: 1,
+            opacity: opacity, // Set the opacity
+            transparent: true, // Enable transparency
           });
         }
       });
     }
-  }, [model]);
+  }, [model, opacity]);
 
   // Create multiple instances of the model with different transformations
   return (
@@ -50,9 +53,10 @@ type IcebergType = {
   positions: THREE.Vector3[];
   scales?: THREE.Vector3[];
   rotations?: THREE.Euler[];
+  opacity?: number; // Optional opacity property for Iceberg
 };
 
-export const Iceberg: FC<IcebergType> = ({ positions, scales, rotations }) => {
+export const Iceberg: FC<IcebergType> = ({ positions, scales, rotations, opacity }) => {
   const defaultScale = new THREE.Vector3(1, 1, 1); // Default scale
   const defaultRotation = new THREE.Euler(0, 0, 0); // Default rotation
 
@@ -66,6 +70,7 @@ export const Iceberg: FC<IcebergType> = ({ positions, scales, rotations }) => {
       rotations={finalRotations}
       scales={finalScales}
       path="/3dObjects/IceBerg.fbx"
+      opacity={opacity} // Pass opacity to the FBXModel component
     />
   );
 };

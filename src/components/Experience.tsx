@@ -28,8 +28,8 @@ const FBXModel: FC<FBXModelType> = ({ path }) => {
           // Change the material of each mesh
           child.material = new THREE.MeshStandardMaterial({
             color: new THREE.Color("darkblue"), // Example: red color
-            roughness: 0.5,
-            metalness: 0.5,
+            roughness: 0.2,
+            metalness: 1,
           });
         }
       });
@@ -339,6 +339,7 @@ export const Experience = () => {
           positions={positions}
           rotations={rotations}
           scales={scales}
+          opacity={0.2}
         />
       ))}
     </>
