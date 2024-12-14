@@ -34,7 +34,7 @@ export const TextSection: FC<TextSectionProps> = ({ title, subtitle, link, ...pr
 
   const handlePointerOut = () => {
     setIsHovered(false); // Set hover to false when mouse leaves
-    setBackgroundColor('blue'); // Revert to the original background color
+    setBackgroundColor('white'); // Revert to the original background color
   };
 
   return (
@@ -100,7 +100,7 @@ export const TextSection: FC<TextSectionProps> = ({ title, subtitle, link, ...pr
           Contact
           <meshStandardMaterial
           
-            color="blue" // Keep the text material transparent
+            color="white" // Keep the text material transparent
             onBeforeCompile={fadeOnBeforeCompileFlat}
           />
         </Text>
