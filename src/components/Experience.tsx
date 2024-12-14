@@ -117,9 +117,8 @@ export const Experience = () => {
         ),
         title: "Don't Stop",
         subtitle: `Don't let obstacles hold you back.
-  Together, we can keep moving forward.
-  
-  https://linkedin.com/in/nicolas-baigorria | nicobaig@gmail.com`,
+  Together, we can keep moving forward.`,
+  link:"https://linkedin.com/in/nicolas-baigorria"
       },
     ];
   }, []);
