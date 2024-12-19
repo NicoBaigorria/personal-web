@@ -1,7 +1,7 @@
 import { useLoader } from "@react-three/fiber";
 import { FC, useEffect, useRef } from "react";
 import * as THREE from "three";
-import { FBXLoader } from "three/examples/jsm/Addons.js";
+import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 
 type FBXModelType = {
   path: string;
@@ -15,38 +15,48 @@ const FBXModel: FC<FBXModelType> = ({ positions, rotations, scales, path, opacit
   const model = useLoader(FBXLoader, path); // Load the FBX model
   const groupRef = useRef<THREE.Group>(null);
 
-  // Modify materials once the model is loaded
+  const createMaterial = (): THREE.MeshStandardMaterial => {
+    return new THREE.MeshStandardMaterial({
+      color: new THREE.Color("white"),
+      roughness: 1,
+      metalness: 0,
+      opacity: opacity,
+      transparent: opacity < 1,
+    });
+  };
+
+  const applyMaterial = (object: THREE.Object3D) => {
+    object.traverse((child) => {
+      if (child instanceof THREE.Mesh) {
+        child.material = createMaterial();
+        (child.material as THREE.Material).needsUpdate = true;
+      }
+    });
+  };
+
+  // Apply material when the model loads
   useEffect(() => {
     if (model && model instanceof THREE.Object3D) {
-      model.traverse((child) => {
-        if (child instanceof THREE.Mesh) {
-          child.material = new THREE.MeshStandardMaterial({
-            color: new THREE.Color("white"),
-            roughness: 0.2,
-            metalness: 1,
-            opacity: opacity, // Set the opacity
-            transparent: true, // Enable transparency
-          });
-        }
-      });
+      applyMaterial(model);
     }
   }, [model, opacity]);
 
-  // Create multiple instances of the model with different transformations
-  return (
-    <>
-      {positions.map((position, index) => {
-        const clone = model.clone(); // Clone the model
-        clone.position.set(position.x, position.y, position.z); // Apply position
-        clone.rotation.set(-(Math.PI / 2), rotations[index].y, rotations[index].z); // Apply rotation
-        clone.scale.set(scales[index].x, scales[index].y, scales[index].z); // Apply scale
+  // Clone and transform the model
+  const renderClones = () => {
+    return positions.map((position, index) => {
+      const clone = model.clone(); // Clone the loaded model
+      clone.position.copy(position);
+      clone.rotation.copy(rotations[index]);
+      clone.scale.copy(scales[index]);
 
-        return (
-          <primitive key={index} object={clone} />
-        );
-      })}
-    </>
-  );
+      // Apply material to the clone
+      applyMaterial(clone);
+
+      return <primitive key={index} object={clone} />;
+    });
+  };
+
+  return <>{renderClones()}</>;
 };
 
 type IcebergType = {
