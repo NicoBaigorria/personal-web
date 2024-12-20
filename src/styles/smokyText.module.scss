@@ -1,0 +1,80 @@
+// Body styles
+.smokeText {
+    font: 1.5rem "Finger Paint";
+    color: transparent;
+    backface-visibility: hidden;
+    align-items: center;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: fit-content;
+    width: fit-content;
+    margin: auto;
+    position: absolute;
+  }
+  
+  .smokeText >div {
+    display: flex;
+  }
+  .smokeText div:first-child {
+    margin-top: auto;
+  }
+  .smokeText div:last-child {
+    margin-bottom: auto;
+  }
+  
+  // Span animation with smoky effect
+  .smokeText span {
+    display: inline-block;
+    text-shadow: 0 0 0 whitesmoke;
+    animation: smoky 5s both; // Duration includes the 5s pause
+  }
+  
+  .smokeText span:first-child {
+   margin-left: auto;
+  }
+  
+  .smokeText span:last-child {
+    margin-right: auto;
+   }
+  
+  // Keyframes for the smoky effect
+  @keyframes smoky {
+    0% {
+      transform: translate3d(-8rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
+      text-shadow: 0 0 20px whitesmoke;
+      opacity: 0;
+    }
+    20% {
+      transform: translate3d(0, 0, 0) rotate(0deg) skewX(0deg) scale(1);
+      text-shadow: 0 0 0px whitesmoke;
+      opacity: 1;
+    }
+  
+    60% {
+      transform: translate3d(0, 0, 0) rotate(0deg) skewX(0deg) scale(1);
+      text-shadow: 0 0 0px whitesmoke;
+      opacity: 1;
+    }
+  
+    90% {
+      transform: translate3d(8rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
+      text-shadow: 0 0 20px whitesmoke;
+      opacity: 0;
+    }
+    100% {
+      transform: translate3d(8rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
+      text-shadow: 0 0 20px whitesmoke;
+      opacity: 0;
+    }
+  }
+  
+  // Animation delay for spans using loop logic
+  @for $item from 1 through 21 {
+    span:nth-of-type(#{$item}) {
+      animation-delay: #{math.div($item * 2, 21)}s;
+    }
+  }
+  

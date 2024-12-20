@@ -17,17 +17,17 @@ type FBXModelType = {
 };
 
 const FBXModel: FC<FBXModelType> = ({ path }) => {
-  const model = useLoader(FBXLoader, path); // Load the FBX model
+  const model = useLoader(FBXLoader, path); 
   const groupRef = useRef<THREE.Group>(null);
 
-  // Modify materials once the model is loaded
+
   useEffect(() => {
     if (model && model instanceof THREE.Object3D) {
       model.traverse((child) => {
         if (child instanceof THREE.Mesh) {
-          // Change the material of each mesh
+
           child.material = new THREE.MeshStandardMaterial({
-            color: new THREE.Color("darkblue"), // Example: red color
+            color: new THREE.Color("darkblue"), 
             roughness: 0.2,
             metalness: 1,
           });
@@ -268,7 +268,7 @@ export const Experience = () => {
 
 
   useFrame((_state, delta) => {
-    const maxScrollOffset = 0.98; // Stop the model at 90% of the path
+    const maxScrollOffset = 0.98; 
     const scrollOffset = Math.min(scroll.offset, maxScrollOffset); // Limit scroll offset
   
     const curPoint = curve.getPoint(scrollOffset);
@@ -302,7 +302,7 @@ export const Experience = () => {
         <PerspectiveCamera position={[0, -1, 5]} rotation={[0.1, 0, 0]} fov={30} makeDefault />
         <ambientLight intensity={10} /> {/* Add ambient light */}
         <Float floatingRange={[0, 0.05]} rotationIntensity={0.1} speed={10} position={[0, -2.4, -5]}>
-          {/*<pointLight intensity={10} distance={10} decay={2} color={"white"} position={[0, 0.2, -1.5]} />*/}
+        
           <mesh scale={0.005} rotation={[0, (Math.PI / 2), 0]}>
             <FBXModel path="/3dObjects/boat.fbx" />
           </mesh>

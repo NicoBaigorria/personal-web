@@ -9,124 +9,94 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-// Basic canvas styles
-canvas {
-  width: 100vw;
-  height: 100vh;
-  cursor: none !important;
-}
+// In globals.scss or index.html (head section)
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+// In globals.scss
+@import "~@fortawesome/fontawesome-free/css/all.css";
 
 body {
   margin: 0;
   overflow: auto; // Ensure scrolling is enabled
 }
 
-// Body styles
-.smokeText {
-  font: 1.5rem "Finger Paint";
-  color: transparent;
-  backface-visibility: hidden;
-  align-items: center;
-  text-align: center;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: fit-content;
-  width: fit-content;
-  margin: auto;
-  position: absolute;
+/* globals.scss */
+
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.smokeText >div {
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.page-container {
   display: flex;
-}
-.smokeText div:first-child {
-  margin-top: auto;
-}
-.smokeText div:last-child {
-  margin-bottom: auto;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-// Span animation with smoky effect
-.smokeText span {
-  display: inline-block;
-  text-shadow: 0 0 0 whitesmoke;
-  animation: smoky 5s both; // Duration includes the 5s pause
+/* Navbar Styles */
+.navbar {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.smokeText span:first-child {
- margin-left: auto;
+.navbar ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
 }
 
-.smokeText span:last-child {
-  margin-right: auto;
- }
-
-// Keyframes for the smoky effect
-@keyframes smoky {
-  0% {
-    transform: translate3d(-8rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
-    text-shadow: 0 0 20px whitesmoke;
-    opacity: 0;
-  }
-  20% {
-    transform: translate3d(0, 0, 0) rotate(0deg) skewX(0deg) scale(1);
-    text-shadow: 0 0 0px whitesmoke;
-    opacity: 1;
-  }
-
-  60% {
-    transform: translate3d(0, 0, 0) rotate(0deg) skewX(0deg) scale(1);
-    text-shadow: 0 0 0px whitesmoke;
-    opacity: 1;
-  }
-
-  90% {
-    transform: translate3d(8rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
-    text-shadow: 0 0 20px whitesmoke;
-    opacity: 0;
-  }
-  100% {
-    transform: translate3d(8rem, -8rem, 0) rotate(-40deg) skewX(70deg) scale(1.5);
-    text-shadow: 0 0 20px whitesmoke;
-    opacity: 0;
-  }
+.navbar ul li {
+  display: inline;
 }
 
-// Animation delay for spans using loop logic
-@for $item from 1 through 21 {
-  span:nth-of-type(#{$item}) {
-    animation-delay: #{math.div($item * 2, 21)}s;
-  }
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
 }
 
-// Custom scrollbar styles
-/* Scrollbar styles */
-::-webkit-scrollbar {
-  width: 12px;  /* Width of the scrollbar */
-  height: 12px; /* Height of the scrollbar on horizontal scroll */
+.navbar ul li a:hover {
+  text-decoration: underline;
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: #1e90ff; /* Blue color */
-  border-radius: 10px; /* Border radius for rounded corners */
-  transition: background-color 0.3s ease-in-out; /* Smooth transition for hover effect */
+.social-links {
+  display: flex;
+  gap: 15px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: #4682b4; /* Darker blue on hover */
+.social-links a {
+  color: white;
+  font-size: 20px;
 }
 
-::-webkit-scrollbar-track {
-  background: #f0f0f0; /* Light background for the track */
-  border-radius: 10px; /* Border radius for the track */
+.social-links a:hover {
+  color: #1e90ff;  /* Change color on hover */
 }
 
-::-webkit-scrollbar-track-piece {
-  border-radius: 10px; /* Ensure the track's edges are rounded */
+/* Content Styling */
+.content {
+  padding: 20px;
+  text-align: center;
+  flex-grow: 1;
 }
 
-::-webkit-scrollbar-corner {
-  background: #f0f0f0; /* Same as the track background */
+.content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
 }
+
+.content p {
+  font-size: 1.2rem;
+}
+

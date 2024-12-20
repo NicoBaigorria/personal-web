@@ -1,6 +1,5 @@
 import { ShaderMaterial, WebGLRenderer, WebGLProgramParametersWithUniforms } from "three";
 
-// Function to modify the fragment shader
 const replaceFragmentShader = (fragmentShader: any) =>
   fragmentShader
     .replace(
@@ -34,9 +33,9 @@ const replaceFragmentShader = (fragmentShader: any) =>
   vec4 diffuseColor = vec4( diffuse, fadeOpacity * opacity );`
     );
 
-// Corrected `onBeforeCompile` function to modify the fragment shader source
+
 export const fadeOnBeforeCompile = (parameters: WebGLProgramParametersWithUniforms, renderer: WebGLRenderer) => {
-  // Access and modify the fragment shader directly from the parameters
+
   if (parameters.fragmentShader) {
     parameters.fragmentShader = replaceFragmentShader(parameters.fragmentShader);
   }
