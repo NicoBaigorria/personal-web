@@ -2,6 +2,7 @@
 import Header from "@/components/Header";
 import ListCards from "@/components/ListCards";
 import { ListCard } from "@/components/ListCards"; // Importing ListCard class
+import NumberSection from "@/components/NumberSection";
 import styles from "@/styles/home.module.scss"; // Importing the SCSS module
 
 
@@ -33,6 +34,8 @@ export default function Page() {
 
       {/* Pass the lists data to ListCards component */}
       <ListCards lists={lists} />
+
+      <NumberSection/>
     </div>
   );
 }

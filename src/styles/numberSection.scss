@@ -1,0 +1,14 @@
+.NumberSectionContainter{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-self: center;
+    margin-top: 20vh;
+    margin-bottom: 20vh;
+}
+
+.NumberSection{
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px 5px rgba($color: #000000, $alpha: 1.0);
+    padding: 20px;
+}
