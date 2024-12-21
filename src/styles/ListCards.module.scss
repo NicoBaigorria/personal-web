@@ -1,0 +1,97 @@
+// src/styles/ListCards.module.scss
+
+$color1: #1b1c1f;
+$color2: white;
+$color3: #2b55d6;
+$color4: #666;
+
+.ListCardsConteiner {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: auto;
+  place-content: center;
+  position: relative; /* Add positioning to contain absolute elements like buttons */
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.sliderContainer {
+  position: relative;
+  width: 100%;
+  max-width: 400px;  /* Adjust slider width */
+  overflow: hidden; /* Hide content that goes beyond the container */
+}
+
+.CardWrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* Smooth sliding transition */
+}
+
+.Card {
+  background-color: $color1;
+  padding: 40px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-right: 20px; /* Add space between cards */
+  min-height: 300px;
+}
+
+.Card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: $color2;
+}
+
+.Card ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.Card li {
+  font-size: 1.1rem;
+  margin-top: 10px;
+  color: $color2;
+}
+
+.iconContainer {
+  font-size: 60px;
+  color: $color3;
+}
+
+.navigation {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.prevButton, .nextButton {
+  background-color: $color3;
+  color: $color2;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.prevButton:hover, .nextButton:hover {
+  background-color: lighten($color3, 10%);
+}
+
+@media (max-width: 768px) {
+  .ListCardsConteiner {
+    gap: 10px;
+  }
+  .Card {
+    width: 250px;
+    padding: 30px;
+  }
+}

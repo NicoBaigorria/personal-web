@@ -1,0 +1,56 @@
+$color1: #151e3a;
+$color2: white;
+$color3: #2b55d6;
+$color4: #666;
+
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: $color1;
+    /* Light background color */
+}
+
+.content {
+    display: flex;
+        flex-grow: 1;
+        align-items: center;
+}
+
+.principal {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-color: #151e3a;
+    padding: 3rem;
+}
+
+
+.principalText {
+    width: 50%;
+    align-content: center;
+}
+
+.principalText h1 {
+    /* Scoped the h1 to the .principal class */
+    font-size: 3rem;
+    color: $color2;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.principalText p {
+    /* Scoped the p to the .principal class */
+    font-size: 1.5rem;
+    color: $color4;
+    font-weight: 300;
+}
+
+
+.principalImage {
+    width: 50%;
+}
+
+.principalImage img {
+    height: 100%;
+}

@@ -14,6 +14,11 @@
 // In globals.scss
 @import "~@fortawesome/fontawesome-free/css/all.css";
 
+$color1: #151e3a;
+$color2: white;
+$color3: #2b55d6;
+$color4: #222530;
+
 body {
   margin: 0;
   overflow: auto; // Ensure scrolling is enabled
@@ -30,8 +35,12 @@ body {
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
+  background-color: $color1;
+  color: $color2;
+}
+
+a {
+  cursor: pointer;
 }
 
 .page-container {
@@ -40,14 +49,22 @@ body {
   min-height: 100vh;
 }
 
+.navbar-container{
+  max-width: 1000px;
+  margin: auto;
+  width: 100%;
+  display: flex;
+}
+
 /* Navbar Styles */
 .navbar {
-  background-color: #333;
-  color: white;
+  background-color: $color1;
+  color: $color2;
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;;
 }
 
 .navbar ul {
@@ -58,10 +75,11 @@ body {
 
 .navbar ul li {
   display: inline;
+  list-style: none;
 }
 
 .navbar ul li a {
-  color: white;
+  color: $color2;
   text-decoration: none;
   font-size: 16px;
 }
@@ -76,12 +94,12 @@ body {
 }
 
 .social-links a {
-  color: white;
+  color: $color2;
   font-size: 20px;
 }
 
 .social-links a:hover {
-  color: #1e90ff;  /* Change color on hover */
+  color: $color3;  /* Change color on hover */
 }
 
 /* Content Styling */
