@@ -1,3 +1,6 @@
+'use client'
+
+import Header from "@/components/Header";
 import ProjectCard from "@/components/ProjectCard";
 import "@/styles/ProjectsExamples.scss"
 
@@ -19,13 +22,6 @@ export default function Page() {
             technologies: ['Hubspot', 'HTML', 'CSS', "Javascript"],
             tag: 'Public' as 'Public', // Make sure the tag is 'Public' or 'Private'
             link: 'https://www.chery.com.ec/', // Optional link
-        },
-        {
-            name: 'San Patricio InventoryApp',
-            description: 'This project is under construction, but it will be awesome!',
-            image: '/Projects/SanPatricioInventario.jpeg', // Replace with actual image URL
-            technologies: ['React', 'Nodejs', 'HubspotDB', 'HubspotAPI', 'PDF.js'],
-            tag: 'Private' as 'Private', // Make sure the tag is 'Public' or 'Private'
         },
         {
             name: 'maresacenter.com',
@@ -69,14 +65,31 @@ export default function Page() {
         },
     ];
 
-    //https://www.jeep.com/ec
-    //
+    const AppsProjects = [
+        {
+            name: 'Inventary San Patricio Gardens',
+            description: 'A great project that does amazing things.',
+            image: './Projects/SanPatricioInventario.jpeg', // Replace with actual image URL
+            technologies: ['React', 'CSS', 'Javascript', "Nodejs", "HubspotDB"],
+            tag: 'Private' as 'Private', // Make sure the tag is 'Public' or 'Private'
+            link: undefined
+        },
+        {
+            name: 'PDF Filler Planb',
+            description: 'A FullStack Project were the contact data of hubspot is procesed using workflow to send request to this API and return PDF files autofilled of the Canada Goberment',
+            image: './Projects/SanPatricioInventario.jpeg', // Replace with actual image URL
+            technologies: ['React', 'CSS', 'Javascript', "Nodejs", "HubspotDB", "HubspotWorkflows"],
+            tag: 'Private' as 'Private', // Make sure the tag is 'Public' or 'Private'
+            link: undefined
+        },
+    ]
 
     return (
-        <div>
-            <p>Projects</p>
+        <div className="ProjectsPage">
+            <Header/>
+            <p id="principal-Title">Projects</p>
 
-            <p>Webs</p>
+            <p className="secondary-Title">Webs</p>
 
             <div className="projects-examples">
                 {/* Map over the projects array and render a ProjectCard for each project */}
@@ -93,6 +106,23 @@ export default function Page() {
                 ))}
             </div>
 
+
+            <p className="secondary-Title">Applications</p>
+
+            <div className="projects-examples">
+                {/* Map over the projects array and render a ProjectCard for each project */}
+                {AppsProjects.map((project, index) => (
+                    <ProjectCard
+                        key={index} // Use index as a key or a unique id
+                        name={project.name}
+                        description={project.description}
+                        image={project.image}
+                        technologies={project.technologies}
+                        tag={project.tag}
+                        link={project.link} // Optional link
+                    />
+                ))}
+            </div>
 
         </div>
     );
