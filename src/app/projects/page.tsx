@@ -27,7 +27,50 @@ export default function Page() {
             technologies: ['React', 'Nodejs', 'HubspotDB', 'HubspotAPI', 'PDF.js'],
             tag: 'Private' as 'Private', // Make sure the tag is 'Public' or 'Private'
         },
+        {
+            name: 'maresacenter.com',
+            description: 'Another fantastic project with lots of features.',
+            image: './Projects/Chery.png', // Replace with actual image URL
+            technologies: ['Hubspot', 'HTML', 'CSS', "Javascript"],
+            tag: 'Public' as 'Public', // Make sure the tag is 'Public' or 'Private'
+            link: 'https://www.maresacenter.com/', // Optional link
+        },
+        {
+            name: 'jeep.com.ec',
+            description: 'Another fantastic project with lots of features.',
+            image: './Projects/Chery.png', // Replace with actual image URL
+            technologies: ['Hubspot', 'HTML', 'CSS', "Javascript"],
+            tag: 'Public' as 'Public', // Make sure the tag is 'Public' or 'Private'
+            link: 'https://www.jeep.com.ec/', // Optional link
+        },
+        {
+            name: 'dongfeng.com.ec',
+            description: 'Another fantastic project with lots of features.',
+            image: './Projects/Chery.png', // Replace with actual image URL
+            technologies: ['Hubspot', 'HTML', 'CSS', "Javascript"],
+            tag: 'Public' as 'Public', // Make sure the tag is 'Public' or 'Private'
+            link: 'https://www.dongfeng.com.ec/', // Optional link
+        },
+        {
+            name: 'dodge.com.ec',
+            description: 'Another fantastic project with lots of features.',
+            image: './Projects/Chery.png', // Replace with actual image URL
+            technologies: ['Hubspot', 'HTML', 'CSS', "Javascript"],
+            tag: 'Public' as 'Public', // Make sure the tag is 'Public' or 'Private'
+            link: 'https://www.dodge.com.ec/', // Optional link
+        },
+        {
+            name: 'ram.com.ec',
+            description: 'Another fantastic project with lots of features.',
+            image: './Projects/Chery.png', // Replace with actual image URL
+            technologies: ['Hubspot', 'HTML', 'CSS', "Javascript"],
+            tag: 'Public' as 'Public', // Make sure the tag is 'Public' or 'Private'
+            link: 'https://www.ram.com.ec/', // Optional link
+        },
     ];
+
+    //https://www.jeep.com/ec
+    //
 
     return (
         <div>
