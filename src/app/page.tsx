@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import ListCards from "@/components/ListCards";
 import { ListCard } from "@/components/ListCards"; // Importing ListCard class
 import NumberSection from "@/components/NumberSection";
+import ProjectsExamples from "@/components/ProjectsExamples";
 import styles from "@/styles/home.module.scss"; // Importing the SCSS module
 
 
@@ -36,6 +37,9 @@ export default function Page() {
       <ListCards lists={lists} />
 
       <NumberSection/>
+
+      <p style={{fontSize:"2rem", textAlign:"center"}}>Notable Projects</p>
+      <ProjectsExamples/>
     </div>
   );
 }

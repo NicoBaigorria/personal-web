@@ -1,0 +1,93 @@
+.project-card {
+    border: 1px solid #2b55d6;
+    border-radius: 8px;
+    padding: 16px;
+    max-width: 600px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #1b1c1f;
+    display: flex;
+
+    .project-image-container {
+        width: 50%;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .project-info {
+
+        padding-left: 20px;
+        width: 50%;
+
+        .project-card-header {
+            align-items: center;
+            gap: 16px;
+
+            .project-image {
+                width: 80px;
+                height: 80px;
+                border-radius: 8px;
+                object-fit: cover;
+            }
+
+            h3 {
+                margin: 10px 0;
+                font-size: 1.1rem;
+                color: #c5c5c5;
+            }
+
+            .tag {
+                padding: 4px 8px;
+                border-radius: 4px;
+                font-size: 0.875rem;
+                color: #fff;
+                margin-top: 4px;
+            }
+
+            .public {
+                background-color: #28a745;
+            }
+
+            .private {
+                background-color: #dc3545;
+            }
+        }
+
+        .project-description {
+            font-size: 1rem;
+            color: #c5c5c5;
+            margin: 16px 0;
+        }
+
+        .technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            .technology {
+                background-color: #f1f1f1;
+                padding: 4px 8px;
+                border-radius: 4px;
+                font-size: 0.875rem;
+                color: #333;
+            }
+        }
+
+        .project-footer {
+            margin-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .link-button {
+                text-decoration: none;
+                background-color: #007bff;
+                color: white;
+                padding: 8px 16px;
+                border-radius: 4px;
+                font-size: 0.875rem;
+            }
+        }
+    }
+}
