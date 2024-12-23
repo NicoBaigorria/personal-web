@@ -26,7 +26,7 @@ export default function Page() {
         {
             name: 'maresacenter.com',
             description: 'Another fantastic project with lots of features.',
-            image: './Projects/Chery.png', // Replace with actual image URL
+            image: './Projects/MaresaCenter.png', // Replace with actual image URL
             technologies: ['Hubspot', 'HTML', 'CSS', "Javascript"],
             tag: 'Public' as 'Public', // Make sure the tag is 'Public' or 'Private'
             link: 'https://www.maresacenter.com/', // Optional link
@@ -34,7 +34,7 @@ export default function Page() {
         {
             name: 'jeep.com.ec',
             description: 'Another fantastic project with lots of features.',
-            image: './Projects/Chery.png', // Replace with actual image URL
+            image: './Projects/Jeep.png', // Replace with actual image URL
             technologies: ['Hubspot', 'HTML', 'CSS', "Javascript"],
             tag: 'Public' as 'Public', // Make sure the tag is 'Public' or 'Private'
             link: 'https://www.jeep.com.ec/', // Optional link
@@ -42,7 +42,7 @@ export default function Page() {
         {
             name: 'dongfeng.com.ec',
             description: 'Another fantastic project with lots of features.',
-            image: './Projects/Chery.png', // Replace with actual image URL
+            image: './Projects/Dongfeng.png', // Replace with actual image URL
             technologies: ['Hubspot', 'HTML', 'CSS', "Javascript"],
             tag: 'Public' as 'Public', // Make sure the tag is 'Public' or 'Private'
             link: 'https://www.dongfeng.com.ec/', // Optional link
@@ -50,7 +50,7 @@ export default function Page() {
         {
             name: 'dodge.com.ec',
             description: 'Another fantastic project with lots of features.',
-            image: './Projects/Chery.png', // Replace with actual image URL
+            image: './Projects/Dodge.png', // Replace with actual image URL
             technologies: ['Hubspot', 'HTML', 'CSS', "Javascript"],
             tag: 'Public' as 'Public', // Make sure the tag is 'Public' or 'Private'
             link: 'https://www.dodge.com.ec/', // Optional link
@@ -58,7 +58,7 @@ export default function Page() {
         {
             name: 'ram.com.ec',
             description: 'Another fantastic project with lots of features.',
-            image: './Projects/Chery.png', // Replace with actual image URL
+            image: './Projects/Ram.png', // Replace with actual image URL
             technologies: ['Hubspot', 'HTML', 'CSS', "Javascript"],
             tag: 'Public' as 'Public', // Make sure the tag is 'Public' or 'Private'
             link: 'https://www.ram.com.ec/', // Optional link
@@ -68,7 +68,7 @@ export default function Page() {
     const AppsProjects = [
         {
             name: 'Inventory San Patricio Gardens',
-            description: 'A great project that does amazing things.',
+            description: 'A great project that does amazing things. How to obtain information about the departments according to availability and characteristics. Make complex quotes for multiple properties simultaneously, print pdfs and send triggers to track the sale by integrating Equifax and Hubspot using API Developed in Nodejs',
             image: './Projects/SanPatricioInventario.jpeg', // Replace with actual image URL
             technologies: ['React', 'CSS', 'Javascript', "Nodejs", "HubspotDB"],
             tag: 'Private' as 'Private', // Make sure the tag is 'Public' or 'Private'
@@ -77,7 +77,7 @@ export default function Page() {
         {
             name: 'PDF Filler Planb',
             description: 'A FullStack Project were the contact data of Hubspot is procesed using workflow to send request to this API and update DataBase with PDF files autofilled of the Canada Goberment, also I develop a Inteface to test and check the info, properties and fields types',
-            image: './Projects/SanPatricioInventario.jpeg', // Replace with actual image URL
+            image: './Projects/Planb.png', // Replace with actual image URL
             technologies: ['React', 'CSS', 'Typescript', "Nodejs", "HubspotDB", "HubspotWorkflows", "AWS", "DOCKER"],
             tag: 'Private' as 'Private', // Make sure the tag is 'Public' or 'Private'
             link: undefined
@@ -85,7 +85,7 @@ export default function Page() {
         {
             name: 'ThunderGo Ecommerce',
             description: 'A FullStack Project were ERP, HubspotAPI, Nodejs, React and PlaceToPayAPI works toguether to create a Ecommerce to buy Motorbikes and Accesories',
-            image: './Projects/SanPatricioInventario.jpeg', // Replace with actual image URL
+            image: './Projects/Thundergo.jpg', // Replace with actual image URL
             technologies: ['React', 'CSS', 'Javascript', "Nodejs", "HubspotDB", "HubspotWorkflows, PlaceToPay, ERP", "NGINX", "APACHE"],
             tag: 'Private' as 'Private', // Make sure the tag is 'Public' or 'Private'
             link: undefined
@@ -95,8 +95,8 @@ export default function Page() {
     const IntegrationsProjects = [
         {
             name: 'Integration Hubspot Equifax',
-            description: 'A integration between Hubspot and EquifaxApi using Workflows and Nodejs API to automate calification of contacts',
-            image: './Projects/SanPatricioInventario.jpeg', // Replace with actual image URL
+            description: 'A integration between Hubspot and EquifaxApi using Workflows and Nodejs API to automate contacts scoring by credit history',
+            image: './Projects/Equifax_Logo.jpg', // Replace with actual image URL
             technologies: ['Javascript', "Nodejs", "Hubspot Workflow"],
             tag: 'Private' as 'Private', // Make sure the tag is 'Public' or 'Private'
             link: undefined
