@@ -1,3 +1,13 @@
+/* Define the local font using @font-face */
+@font-face {
+    font-family: 'Oswald';
+    src: url('/fonts/Oswald-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    /* Set the font weight */
+    font-style: normal;
+    /* Set the font style */
+}
+
 $color1: #151e3a;
 $color2: white;
 $color3: #2b55d6;
@@ -13,8 +23,8 @@ $color4: #666;
 
 .content {
     display: flex;
-        flex-grow: 1;
-        align-items: center;
+    flex-grow: 1;
+    align-items: center;
 }
 
 .principal {
@@ -37,6 +47,7 @@ $color4: #666;
     color: $color2;
     font-weight: bold;
     margin-bottom: 1rem;
+    font-family: 'Oswald', sans-serif;
 }
 
 .principalText p {
@@ -46,11 +57,16 @@ $color4: #666;
     font-weight: 300;
 }
 
-
 .principalImage {
     width: 50%;
 }
 
 .principalImage img {
     height: 100%;
+}
+
+.notable{
+    font-size: 2rem;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
 }

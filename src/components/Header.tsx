@@ -16,16 +16,15 @@ const Header = () => {
         <div className={`${styles.navbarLinks} ${menuOpen ? styles.open : ''}`}>
           <ul className={styles.navbarLinks}>
             <li><a onClick={() => router.push('/')}>Home</a></li>
-            <li><a onClick={() => router.push('/about')}>About Me</a></li>
             <li><a onClick={() => router.push('/projects')}>Projects</a></li>
             <li><a onClick={() => router.push('/gallery')}>Gallery</a></li>
           </ul>
 
           <div className={styles.socialLinks}>
-            <a href="https://github.com/yourprofile" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/NicoBaigorria" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-github"></i>
             </a>
-            <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/nicolas-baigorria/" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-linkedin"></i>
             </a>
             <a href="mailto:nicobaig@hotmail.com" target="_blank" rel="noopener noreferrer">

@@ -67,7 +67,7 @@ export default function Page() {
 
     const AppsProjects = [
         {
-            name: 'Inventary San Patricio Gardens',
+            name: 'Inventory San Patricio Gardens',
             description: 'A great project that does amazing things.',
             image: './Projects/SanPatricioInventario.jpeg', // Replace with actual image URL
             technologies: ['React', 'CSS', 'Javascript', "Nodejs", "HubspotDB"],
@@ -76,9 +76,28 @@ export default function Page() {
         },
         {
             name: 'PDF Filler Planb',
-            description: 'A FullStack Project were the contact data of hubspot is procesed using workflow to send request to this API and return PDF files autofilled of the Canada Goberment',
+            description: 'A FullStack Project were the contact data of Hubspot is procesed using workflow to send request to this API and update DataBase with PDF files autofilled of the Canada Goberment, also I develop a Inteface to test and check the info, properties and fields types',
             image: './Projects/SanPatricioInventario.jpeg', // Replace with actual image URL
-            technologies: ['React', 'CSS', 'Javascript', "Nodejs", "HubspotDB", "HubspotWorkflows"],
+            technologies: ['React', 'CSS', 'Typescript', "Nodejs", "HubspotDB", "HubspotWorkflows", "AWS", "DOCKER"],
+            tag: 'Private' as 'Private', // Make sure the tag is 'Public' or 'Private'
+            link: undefined
+        },
+        {
+            name: 'ThunderGo Ecommerce',
+            description: 'A FullStack Project were ERP, HubspotAPI, Nodejs, React and PlaceToPayAPI works toguether to create a Ecommerce to buy Motorbikes and Accesories',
+            image: './Projects/SanPatricioInventario.jpeg', // Replace with actual image URL
+            technologies: ['React', 'CSS', 'Javascript', "Nodejs", "HubspotDB", "HubspotWorkflows, PlaceToPay, ERP", "NGINX", "APACHE"],
+            tag: 'Private' as 'Private', // Make sure the tag is 'Public' or 'Private'
+            link: undefined
+        },
+    ]
+
+    const IntegrationsProjects = [
+        {
+            name: 'Integration Hubspot Equifax',
+            description: 'A integration between Hubspot and EquifaxApi using Workflows and Nodejs API to automate calification of contacts',
+            image: './Projects/SanPatricioInventario.jpeg', // Replace with actual image URL
+            technologies: ['Javascript', "Nodejs", "Hubspot Workflow"],
             tag: 'Private' as 'Private', // Make sure the tag is 'Public' or 'Private'
             link: undefined
         },
@@ -86,7 +105,7 @@ export default function Page() {
 
     return (
         <div className="ProjectsPage">
-            <Header/>
+            <Header />
             <p id="principal-Title">Projects</p>
 
             <p className="secondary-Title">Webs</p>
@@ -112,6 +131,23 @@ export default function Page() {
             <div className="projects-examples">
                 {/* Map over the projects array and render a ProjectCard for each project */}
                 {AppsProjects.map((project, index) => (
+                    <ProjectCard
+                        key={index} // Use index as a key or a unique id
+                        name={project.name}
+                        description={project.description}
+                        image={project.image}
+                        technologies={project.technologies}
+                        tag={project.tag}
+                        link={project.link} // Optional link
+                    />
+                ))}
+            </div>
+
+            <p className="secondary-Title">Integrations</p>
+
+            <div className="projects-examples">
+                {/* Map over the projects array and render a ProjectCard for each project */}
+                {IntegrationsProjects.map((project, index) => (
                     <ProjectCard
                         key={index} // Use index as a key or a unique id
                         name={project.name}

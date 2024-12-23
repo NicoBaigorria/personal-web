@@ -1,3 +1,13 @@
+/* styles/globals.scss */
+
+/* Define the local font using @font-face */
+@font-face {
+  font-family: 'Oswald';
+  src: url('/fonts/Oswald-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;  /* Set the font weight */
+  font-style: normal;   /* Set the font style */
+}
+
 $color1: #1b1c1f;
 $color2: white;
 $color3: #2b55d6;
@@ -16,6 +26,7 @@ $color4: #151e3a;
     left: 0;
     width: 100%;
     z-index: 1000;
+    font-family: 'Oswald';
   }
   
   /* Navbar holds the navigation links and social links */

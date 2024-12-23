@@ -1,3 +1,14 @@
+/* styles/globals.scss */
+
+/* Define the local font using @font-face */
+@font-face {
+    font-family: 'Oswald';
+    src: url('/fonts/Oswald-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;  /* Set the font weight */
+    font-style: normal;   /* Set the font style */
+  }
+  
+
 .projects-examples{
     align-self: center;
     justify-self: center;
@@ -15,13 +26,15 @@
         margin-top: 50px;
         margin-bottom: 30px;
         text-align: center;
+        font-family: 'Oswald', sans-serif;
     }
 
     .secondary-Title{
         font-size: 2.5rem;
-        margin-bottom: 20px;
-        margin-top: 20px;
+        margin-bottom: 2rem;
+        margin-top: 4rem;
         text-align: center;
+        font-family: 'Oswald', sans-serif;
     }
 }
 

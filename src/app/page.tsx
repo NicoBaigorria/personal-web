@@ -12,9 +12,9 @@ export default function Page() {
   const lists = [
     new ListCard("Program Lenguajes", ["Javascript", "Typescript", "C#", "Phyton"], "fas fa-code"), // Example icon
     new ListCard("Frontend", ["HTML", "CSS", "SCSS", "THREEJS", "Javascript", "NEXTJS", "React"], "fas fa-desktop"),
-    new ListCard("Backend", [".NET", "SQLServer", "NODEJS"], "fas fa-server"),
+    new ListCard("Backend", [".NET", "SQLServer", "NODEJS","DOCKER"], "fas fa-server"),
     new ListCard("Projects", ["Landing Pages", "Webs", "APIs", "Integrations", "WebApps", "Ecommerces"], "fas fa-list-check"),
-    new ListCard("Others Tools", ["Blender", "AffterEffects", "Figma"], "fas fa-plus"),
+    new ListCard("Others Skills", ["Blender", "AffterEffects", "Figma", "Threejs"], "fas fa-plus"),
   ];
 
   return (
@@ -25,6 +25,11 @@ export default function Page() {
           <div className={styles.principalText}>
             <p>Hello! I´m <br /> Nicolás Baigorria</p>
             <h1>Web Developer</h1>
+            <p>with more out 5 years of experience.
+              I got into programming after my wife had our first child.
+              I was and still am a stay-at-home dad,
+              and I wanted a career that I can do from home and still
+              be there with my daugther to watch her grow up.</p>
           </div>
           <div className={styles.principalImage}>
             <img src="./MiFoto.png" alt="Nicolás Baigorria" />
@@ -36,10 +41,10 @@ export default function Page() {
       {/* Pass the lists data to ListCards component */}
       <ListCards lists={lists} />
 
-      <NumberSection/>
+      <NumberSection />
 
-      <p style={{fontSize:"2rem", textAlign:"center"}}>Notable Projects</p>
-      <ProjectsExamples/>
+      <p className={styles.notable}>Notable Projects</p>
+      <ProjectsExamples />
     </div>
   );
 }
