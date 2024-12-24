@@ -35,7 +35,6 @@ $color4: #666;
     padding: 3rem;
 }
 
-
 .principalText {
     width: 50%;
     align-content: center;
@@ -65,8 +64,34 @@ $color4: #666;
     height: 100%;
 }
 
-.notable{
+.notable {
     font-size: 2rem;
     text-align: center;
     font-family: 'Oswald', sans-serif;
 }
+
+/* Mobile specific styles */
+@media (max-width: 768px) {
+    .principal{
+        display: flex;
+        flex-direction: column-reverse;
+        height: auto;
+    }
+
+    .principalText {
+        width: 100%;
+    }
+
+    .principalImage {
+        width: 100%;
+
+        img{
+            max-height: 50vh;
+        }
+    }
+
+    #NumberSection{
+        justify-content: center;
+    }
+}
+

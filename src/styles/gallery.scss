@@ -1,0 +1,27 @@
+/* Define the local font using @font-face */
+@font-face {
+    font-family: 'Oswald';
+    src: url('/fonts/Oswald-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    /* Set the font weight */
+    font-style: normal;
+    /* Set the font style */
+}
+
+
+.gallery-container {
+
+    .title {
+        margin-top: 4rem;
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        font-family: 'Oswald', sans-serif;
+        text-align: center;
+        justify-items: center;
+    }
+
+    .projects-container{
+        justify-items: center;
+    }
+}

@@ -7,7 +7,7 @@ const ProjectsExamples: React.FC = () => {
   const projects = [
     {
       name: 'mazda.com.ec',
-      description: 'A great project that does amazing things.',
+      description: 'A project with multiple custom modules such as Google maps, sliders, online quote, 3D viewers, among others.',
       image: './Projects/Mazda.png', // Replace with actual image URL
       technologies: ['Hubspot', 'HTML', 'CSS', "Javascript"],
       tag: 'Public' as 'Public', // Make sure the tag is 'Public' or 'Private'
@@ -23,7 +23,7 @@ const ProjectsExamples: React.FC = () => {
     },
     {
       name: 'San Patricio InventoryApp',
-      description: 'This project is under construction, but it will be awesome!',
+      description: 'A great project that does amazing things. How to obtain information about the departments according to availability and characteristics. Make complex quotes for multiple properties simultaneously, print pdfs and send triggers to track the sale by integrating Equifax and Hubspot using API Developed in Nodejs',
       image: '/Projects/SanPatricioInventario.jpeg', // Replace with actual image URL
       technologies: ['React', 'Nodejs', 'HubspotDB', 'HubspotAPI', 'PDF.js'],
       tag: 'Private' as 'Private', // Make sure the tag is 'Public' or 'Private'

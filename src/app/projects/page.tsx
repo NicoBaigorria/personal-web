@@ -9,7 +9,7 @@ export default function Page() {
     const WebProjects = [
         {
             name: 'mazda.com.ec',
-            description: 'A great project that does amazing things.',
+            description: 'A project with multiple custom modules such as Google maps, sliders, online quote, 3D viewers, among others.',
             image: './Projects/Mazda.png', // Replace with actual image URL
             technologies: ['Hubspot', 'HTML', 'CSS', "Javascript"],
             tag: 'Public' as 'Public', // Make sure the tag is 'Public' or 'Private'
@@ -17,7 +17,7 @@ export default function Page() {
         },
         {
             name: 'chery.com.ec',
-            description: 'Another fantastic project with lots of features.',
+            description: 'A project with multiple custom modules such as Google maps, sliders, online quote, 3D viewers, among others.',
             image: './Projects/Chery.png', // Replace with actual image URL
             technologies: ['Hubspot', 'HTML', 'CSS', "Javascript"],
             tag: 'Public' as 'Public', // Make sure the tag is 'Public' or 'Private'
@@ -41,7 +41,7 @@ export default function Page() {
         },
         {
             name: 'dongfeng.com.ec',
-            description: 'Another fantastic project with lots of features.',
+            description: 'A project with multiple custom modules such as Google maps, sliders, online quote, 3D viewers, among others.',
             image: './Projects/Dongfeng.png', // Replace with actual image URL
             technologies: ['Hubspot', 'HTML', 'CSS', "Javascript"],
             tag: 'Public' as 'Public', // Make sure the tag is 'Public' or 'Private'
@@ -57,7 +57,7 @@ export default function Page() {
         },
         {
             name: 'ram.com.ec',
-            description: 'Another fantastic project with lots of features.',
+            description: 'A project with multiple custom modules such as Google maps, sliders, online quote, 3D viewers, among others.',
             image: './Projects/Ram.png', // Replace with actual image URL
             technologies: ['Hubspot', 'HTML', 'CSS', "Javascript"],
             tag: 'Public' as 'Public', // Make sure the tag is 'Public' or 'Private'
@@ -86,7 +86,7 @@ export default function Page() {
             name: 'ThunderGo Ecommerce',
             description: 'A FullStack Project were ERP, HubspotAPI, Nodejs, React and PlaceToPayAPI works toguether to create a Ecommerce to buy Motorbikes and Accesories',
             image: './Projects/Thundergo.jpg', // Replace with actual image URL
-            technologies: ['React', 'CSS', 'Javascript', "Nodejs", "HubspotDB", "HubspotWorkflows, PlaceToPay, ERP", "NGINX", "APACHE"],
+            technologies: ['React', 'CSS', 'Javascript', "Nodejs", "HubspotDB", "HubspotWorkflows", "PlaceToPay", "ERP", "NGINX", "APACHE"],
             tag: 'Private' as 'Private', // Make sure the tag is 'Public' or 'Private'
             link: undefined
         },
