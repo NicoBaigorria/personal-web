@@ -58,10 +58,16 @@ $color4: #666;
 
 .principalImage {
     width: 50%;
+    align-content: center;
+    text-align: center;
 }
 
 .principalImage img {
-    height: 100%;
+    border-radius: 50%;
+    background-color: $color3;
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
 }
 
 .notable {

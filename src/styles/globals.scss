@@ -19,10 +19,99 @@ $color2: white;
 $color3: #2b55d6;
 $color4: #222530;
 
+/* Estilo global */
 body {
   margin: 0;
-  overflow: auto; // Ensure scrolling is enabled
+  padding: 0;
+  height: 100vh;
+  background-color: #151e3a; /* Fondo oscuro para resaltar las luces */
+  position: relative;
 }
+
+/* Luces animadas distribuidas a los costados */
+.light {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(0, 255, 255, 0.5); /* Color cyan */
+  animation: lightPulse 3s ease-in-out infinite alternate; /* Animación de pulso */
+}
+
+/* Luces a la izquierda */
+.light1 {
+  top: 10%;
+  left: 8vw; /* Luz a la izquierda */
+  animation-delay: 0s;
+}
+
+.light2 {
+  top: 25%;
+  left: 80vw; /* Luz a la izquierda */
+  animation-delay: 1s;
+}
+
+.light3 {
+  top: 50%;
+  left: 7vw; /* Luz a la izquierda */
+  animation-delay: 2s;
+}
+
+.light4 {
+  top: 65%;
+  left: 90vw; /* Luz a la izquierda */
+  animation-delay: 0s;
+}
+
+.light5 {
+  top: 80%;
+  left: 12vw; /* Luz a la izquierda */
+  animation-delay: 1s;
+}
+
+/* Luces a la derecha */
+.light6 {
+  top: 15%;
+  right: 85vw; /* Luz a la derecha */
+  animation-delay: 1s;
+}
+
+.light7 {
+  top: 30%;
+  right: 10vw; /* Luz a la derecha */
+  animation-delay: 2s;
+}
+
+.light8 {
+  top: 55%;
+  right: 78vw; /* Luz a la derecha */
+  animation-delay: 0s;
+}
+
+.light9 {
+  top: 70%;
+  right: 9vw; /* Luz a la derecha */
+  animation-delay: 1s;
+}
+
+.light10 {
+  top: 85%;
+  right: 79vw; /* Luz a la derecha */
+  animation-delay: 2s;
+}
+
+/* Animación de pulso de las luces */
+@keyframes lightPulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0.2;
+  }
+}
+
 
 /* globals.scss */
 

@@ -18,7 +18,6 @@ $color4: #151e3a;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0rem 2rem;
     background-color: $color1;
     color: $color2;
     position: fixed;
@@ -27,6 +26,7 @@ $color4: #151e3a;
     width: 100%;
     z-index: 1000;
     font-family: 'Oswald';
+    height: 60px;
   }
   
   /* Navbar holds the navigation links and social links */
@@ -47,6 +47,7 @@ $color4: #151e3a;
     padding: 0;
     flex: 1; /* Make navbar links take up available space */
     justify-content: center;
+    margin-right: 15px;
   }
   
   /* Navbar links items */
@@ -100,6 +101,8 @@ $color4: #151e3a;
     width: 30px;
     cursor: pointer;
     z-index: 2000; /* Ensure burger menu is on top */
+    margin-left: auto;
+    margin-right: 15px;
   }
   
   /* Individual burger menu bars */
@@ -129,14 +132,13 @@ $color4: #151e3a;
     /* Navbar links that will toggle visibility on mobile */
     .navbarLinks {
       position: absolute;
-      top: 60px;
+      top: 40px;
       left: 0;
       width: 100%;
       background-color: $color4;
       flex-direction: column;
       align-items: center;
       display: none; /* Hide menu by default on mobile */
-      padding: 10px 0;
     }
   
     /* Show navbar links when menu is open */
