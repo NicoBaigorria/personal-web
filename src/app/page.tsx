@@ -1,4 +1,5 @@
 "use client";
+import Certifications from "@/components/Certifications";
 import Header from "@/components/Header";
 import ListCards from "@/components/ListCards";
 import { ListCard } from "@/components/ListCards"; // Importing ListCard class
@@ -10,7 +11,7 @@ import styles from "@/styles/home.module.scss"; // Importing the SCSS module
 export default function Page() {
   // Sample ListCard data
   const lists = [
-    new ListCard("Program Lenguajes", ["Javascript", "Typescript", "C#", "Phyton"], "fas fa-code"), // Example icon
+    new ListCard("Program Lenguajes", ["Javascript", "Typescript", "C#", "Python"], "fas fa-code"), // Example icon
     new ListCard("Frontend", ["HTML", "CSS", "SCSS", "THREEJS", "Javascript", "NEXTJS", "React"], "fas fa-desktop"),
     new ListCard("Backend", [".NET", "SQLServer", "NODEJS","DOCKER"], "fas fa-server"),
     new ListCard("Projects", ["Landing Pages", "Webs", "APIs", "Integrations", "WebApps", "Ecommerces"], "fas fa-list-check"),
@@ -42,6 +43,8 @@ export default function Page() {
       <ListCards lists={lists} />
 
       <NumberSection />
+
+      <Certifications/>
 
       <p className={styles.notable}>Notable Projects</p>
       <ProjectsExamples />

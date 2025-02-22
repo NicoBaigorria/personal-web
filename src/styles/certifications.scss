@@ -1,0 +1,26 @@
+.Certifications{
+    margin-bottom: 40px;
+}
+
+.Certifications > p{
+    font-size: 2rem;
+    text-align: center;
+    font-family: "Oswald", sans-serif;
+    margin-bottom: 20px;
+}
+
+.Certifications-cont{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 900px;
+    justify-content: center;
+    margin: auto;
+}
+
+.Certifications-cont > div{
+    margin: 0px 10px;
+}
+
+.Certifications-cont > div img{
+    max-width: 300px;
+}
